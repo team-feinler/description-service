@@ -12,7 +12,8 @@
     "server-dev": "nodemon server/index.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.11.12"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
