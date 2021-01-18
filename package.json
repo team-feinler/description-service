@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "FEC-Blitva-Description",
   "version": "",
   "description": "",
   "author": "",
@@ -7,9 +7,20 @@
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "react-dev": "webpack --mode=development --watch",
+    "server-dev": "nodemon server/index.js"
+  },
   "dependencies": {},
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.13.0",
+    "webpack-cli": "^4.3.1"
   }
 }
