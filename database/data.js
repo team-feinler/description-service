@@ -17,7 +17,7 @@ var createItemName = () => {
   var itemName = null;
   //an item name should contain between 5 - 10 words + a color
   //randomize a number between 5 - 10 words
-  var numberOfWords = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+  var numberOfWords = Math.floor(Math.random() * (10 - 5)) + 5;
   //need to call lorem.generateSentences(1) + color
   // itemName = lorem.generateWords(numberOfWords) + `, ${color}`;
   itemName = lorem.generateWords(numberOfWords);
@@ -30,7 +30,7 @@ var createItemDescription = () => {
   //create an array
   var itemDescription = [];
   //create random number between 4-7
-  var max = Math.floor(Math.random() * (7 - 4 + 1)) + 4;
+  var max = Math.floor(Math.random() * (7 - 4)) + 4;
   //set max number = to random number above
   //loop from 0 to max number
   for (var i = 0; i <= max; i++) {
@@ -82,7 +82,7 @@ var createConfiguration = () => {
   var configArray = [];
   //each value can be a few words to no words
   //randomize numbers between 1- 5 to get a number of configurations for the item
-  var numOfConfigs = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+  var numOfConfigs = Math.floor(Math.random() * (5 - 1)) + 1;
 
   //loop from 0 - numOfConfigs
   for (var i = 0; i < numOfConfigs; i++) {

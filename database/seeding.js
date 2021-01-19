@@ -6,7 +6,8 @@ const Description = require('./database.js');
 var fakeData = data.data;
 
 Description.Description.count({}, function(err, count) {
-  if (count !== 100) {
+  //Database should hold at most 100 items
+  if (count < 100) {
     //seed script to populate DB
     Description.Description.insertMany(fakeData)
       .then(() => console.log('DATA SUCCESSFULLY SEEDED'))
