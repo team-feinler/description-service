@@ -7,6 +7,7 @@ let descriptionSchema = mongoose.Schema({
   itemDescription: Array,
   itemColor: String,
   availableColors: Array,
+  configuration: Array,
   brand: String,
   isPrimeFreeOneDay: Boolean,
   isFreeDelivery: Boolean
