@@ -12,13 +12,9 @@ const lorem = new LoremIpsum({
   }
 });
 
-
-var exampleData = [];
-//product Ids from 1000-1100
-
 //FUNCTIONS
 //need function to create a sentence for the name of item + color at end
-var createItemName = (color) => {
+var createItemName = () => {
   var itemName = null;
   //an item name should contain between 5 - 10 words + a color
   //randomize a number between 5 - 10 words
@@ -81,6 +77,27 @@ var generateBooleanValue = () => {
   }
 };
 
+//Create Configuration data
+var createConfiguration = () => {
+  //return an array of 4 values
+  var configArray = [];
+  //each value can be a few words to no words
+  //randomize numbers between 1- 5 to get a number of configurations for the item
+  var numOfConfigs = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+
+  //loop from 0 - numOfConfigs
+  for (var i = 0; i < numOfConfigs; i++) {
+    //randomize a number between 1-4  to get a number of words for each config
+    var numOfWords = Math.floor(Math.random() * (4 - 1)) + 1;
+    //call generateWords with random number above
+    var config = lorem.generateWords(numOfWords);
+    //push generated words into array
+    configArray.push(config);
+  }
+  //return array
+  return configArray;
+};
+
 //need function to keep track of similar items based on color
 var getAvailableColors = (id, color) => {
   //input is a color and id
@@ -111,9 +128,14 @@ var getAvailableColors = (id, color) => {
 };
 
 
+
+var exampleData = [];
+//product Ids from 1000-1100
+
 //Generate data function
 var generateData = () => {
   //returns an array of 100 different items of data
+
 
   //creat an array of three colors
   var colorOptions = ['black', 'white', 'gray'];
@@ -124,7 +146,7 @@ var generateData = () => {
   var nameCount = 0;
   //need the similar items except for different colors to have the same description
   var description = null;
-
+  var configuration = null;
   //loop through numbers starting at 1000 to 1100
   for (var i = 1000; i < 1100; i++) {
     //create a new item object
@@ -134,22 +156,30 @@ var generateData = () => {
     //set property "color" of either black, white, gray in that order
     newItemObject.color = colorOptions[colorIndex];
 
-    //set property name, call createItemName passing in color
+    newItemObject.configuration = createConfiguration();
     //everyItem with same name but different color needs the description to be the same
+    //everyItem with the same name but different color also needs the same configuration options
     if (nameCount === 1) {
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
       newItemObject.itemDescription = description;
+      newItemObject.configuration = configuration;
     }
     if (nameCount === 0) {
+      //set property name, call createItemName
       name = createItemName();
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
       description = createItemDescription();
-      //set property description by calling
+      //set property description
       newItemObject.itemDescription = description;
+
+      configuration = createConfiguration();
+      //set property configuartion
+      newItemObject.configuration = configuration;
     }
     if (nameCount === 2) {
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
       newItemObject.itemDescription = description;
+      newItemObject.configuration = configuration;
       nameCount = 0;
     } else {
       nameCount++;
