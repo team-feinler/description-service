@@ -12,7 +12,8 @@ class App extends React.Component {
 
   render () {
     return (
-      <h1>{this.state.items}</h1>
+      // <h1></h1>
+      <p>{this.state.items}</p>
     );
   }
 }
