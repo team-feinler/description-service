@@ -1,4 +1,4 @@
-import { LoremIpsum } from "lorem-ipsum";
+import { LoremIpsum } from 'lorem-ipsum';
 // const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 const lorem = new LoremIpsum({
@@ -24,7 +24,8 @@ var createItemName = (color) => {
   //randomize a number between 5 - 10 words
   var numberOfWords = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
   //need to call lorem.generateSentences(1) + color
-  itemName = lorem.generateWords(numberOfWords) + `, ${color}`;
+  // itemName = lorem.generateWords(numberOfWords) + `, ${color}`;
+  itemName = lorem.generateWords(numberOfWords);
   //return item Name
   return itemName;
 };
@@ -34,7 +35,7 @@ var createItemDescription = () => {
   //create an array
   var itemDescription = [];
   //create random number between 4-7
-  var max = Math.floor(Math.random() * (7-4 + 1)) + 4;
+  var max = Math.floor(Math.random() * (7 - 4 + 1)) + 4;
   //set max number = to random number above
   //loop from 0 to max number
   for (var i = 0; i <= max; i++) {
@@ -88,14 +89,34 @@ var generateData = () => {
   //creat an array of three colors
   var colorOptions = ['black', 'white', 'gray'];
   var colorIndex = 0;
+  var name = null;
+  var nameCount = 0;
   //loop through numbers starting at 1000 to 1100
-  for (var i = 1000; i <= 1100; i++) {
+  for (var i = 1000; i < 1100; i++) {
     //create a new item object
     var newItemObject = {};
     //set property of product id of object equal to i
     newItemObject.productId = i;
     //set property "color" of either black, white, gray in that order
     newItemObject.color = colorOptions[colorIndex];
+
+    //set property name, call createItemName passing in color
+    if (nameCount === 1) {
+      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      // nameCount++;
+    }
+    if (nameCount === 0) {
+      name = createItemName();
+      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      // nameCount++;
+    }
+    if (nameCount === 2) {
+      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      nameCount = 0;
+    } else {
+      nameCount++;
+    }
+
     //if colorIndex = 2 then reset to 0
     //if last item was black then next item is white and if white then gray and if gray then black
     if (colorIndex === 2) {
@@ -103,15 +124,14 @@ var generateData = () => {
     } else {
       colorIndex++;
     }
-    //set property name, call createItemName passing in color
-    newItemObject.itemName = createItemName(newItemObject.color);
+
     //set property description by calling
     newItemObject.itemDescription = createItemDescription();
 
     //set property available colors => should equal array of other two colors productIds
 
     //set property Brand
-    newItemObject.brand =
+    newItemObject.brand = getBrand(i);
     //set property isPrimeFreeOneDay to either true or false
     newItemObject.isPrimeFreeOneDay = generateBooleanValue();
     //set property isFreeDelivery to either true or false
@@ -121,8 +141,9 @@ var generateData = () => {
   }
 };
 
+generateData();
 
 // var test = createItemDescription();
-exampleData = getBrand(1089);
+// exampleData = getBrand(1089);
 
 export default exampleData;
