@@ -26,9 +26,13 @@ var generateData = () => {
 //need function to create a sentence for the name of item + color at end
 var createItemName = (color) => {
   var itemName = null;
+  //an item name should contain between 5 - 10 words + a color
+  //randomize a number between 5 - 10 words
+  var numberOfWords = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
   //need to call lorem.generateSentences(1) + color
-
+  itemName = lorem.generateWords(numberOfWords) + ', black';
   //return item Name
+  return itemName;
 };
 
 //need function to use lorem ipsum to generate 5-7 paragraphs for description
@@ -38,4 +42,6 @@ var createItemName = (color) => {
 
 //need function to select either true or false randomly
 
-export default exampleData;
+var test = createItemName();
+
+export default test;
