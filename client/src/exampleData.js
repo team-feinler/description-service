@@ -46,10 +46,40 @@ var createItemDescription = () => {
   //return array
   return itemDescription;
 };
+
 //need function to select random brand from a list of speakers
-//Jungle, Desert,  or rainforest around the world
+var getBrand = (num) => {
+  //input: a number between 1000- 1100
+  //output: a string
+  //brands "Nile", "Mississippi", "Thames", "Ganges", "Danube", "Yangtze"
+  if (num < 1015) {
+    return 'Yangtze';
+  }
+  if (num < 1030) {
+    return 'Mississippi';
+  }
+  if (num < 1045) {
+    return 'Thames';
+  }
+  if (num < 1060) {
+    return 'Ganges';
+  }
+  if (num < 1075) {
+    return 'Danube';
+  }
+  return 'Nile';
+};
 
 //need function to select either true or false randomly
+var generateBooleanValue = () => {
+  var num = Math.round(Math.random());
+  if (num === 0) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 
 //Generate data function
 var generateData = () => {
@@ -78,11 +108,14 @@ var generateData = () => {
     //set property description by calling
     newItemObject.itemDescription = createItemDescription();
 
-    //set property available colors
+    //set property available colors => should equal array of other two colors productIds
 
     //set property Brand
-
-    //set property
+    newItemObject.brand =
+    //set property isPrimeFreeOneDay to either true or false
+    newItemObject.isPrimeFreeOneDay = generateBooleanValue();
+    //set property isFreeDelivery to either true or false
+    newItemObject.isFreeDelivery = generateBooleanValue();
     //push new item object into exampleData
     exampleData.push(newItemObject);
   }
@@ -90,6 +123,6 @@ var generateData = () => {
 
 
 // var test = createItemDescription();
-exampleData = lorem.generateParagraphs(6);
+exampleData = getBrand(1089);
 
 export default exampleData;
