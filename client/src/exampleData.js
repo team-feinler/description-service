@@ -81,6 +81,35 @@ var generateBooleanValue = () => {
   }
 };
 
+//need function to keep track of similar items based on color
+var getAvailableColors = (id, color) => {
+  //input is a color and id
+  var arrayOfProductIds = [];
+  var idOne = null;
+  var idTwo = null;
+  //if color is black then add 1 and add 2 to id and pass into array
+  if (color === 'black') {
+    idOne = id + 1;
+    idTwo = id + 2;
+    arrayOfProductIds.push(idOne, idTwo);
+  }
+  //if color is white then add 1 and subtract 1 from id
+  if (color === 'white') {
+    idOne = id - 1;
+    idTwo = id + 1;
+    arrayOfProductIds.push(idOne, idTwo);
+  }
+  //if color is gray than subract 1 and 2 to id and pass into array
+  if (color === 'gray') {
+    idOne = id - 2;
+    idTwo = id - 1;
+    arrayOfProductIds.push(idOne, idTwo);
+  }
+  //output is an array of the product Ids for the products with a similar name but different id
+  //return array of productIds
+  return arrayOfProductIds;
+};
+
 
 //Generate data function
 var generateData = () => {
@@ -116,6 +145,11 @@ var generateData = () => {
     } else {
       nameCount++;
     }
+    //set property similar items but different colors => should equal array of other two colors productIds
+    //[1001, 1002]
+    //[1000, 1002]
+    //[1000, 1001]
+    newItemObject.similarItems = getAvailableColors(i, colorOptions[colorIndex]);
 
     //if colorIndex = 2 then reset to 0
     //if last item was black then next item is white and if white then gray and if gray then black
@@ -126,9 +160,9 @@ var generateData = () => {
     }
 
     //set property description by calling
+    //everyItem with same name but different color needs the description to be the same
     newItemObject.itemDescription = createItemDescription();
 
-    //set property available colors => should equal array of other two colors productIds
 
     //set property Brand
     newItemObject.brand = getBrand(i);
@@ -141,6 +175,7 @@ var generateData = () => {
   }
 };
 
+//create 100 items
 generateData();
 
 // var test = createItemDescription();
