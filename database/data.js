@@ -1,5 +1,5 @@
-import { LoremIpsum } from 'lorem-ipsum';
-// const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+// import { LoremIpsum } from 'lorem-ipsum';
+const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -129,7 +129,7 @@ var getAvailableColors = (id, color) => {
 
 
 
-var exampleData = [];
+var data = [];
 //product Ids from 1000-1100
 
 //Generate data function
@@ -204,7 +204,7 @@ var generateData = () => {
     //set property isFreeDelivery to either true or false
     newItemObject.isFreeDelivery = generateBooleanValue();
     //push new item object into exampleData
-    exampleData.push(newItemObject);
+    data.push(newItemObject);
   }
 };
 
@@ -214,4 +214,4 @@ generateData();
 // var test = createItemDescription();
 // exampleData = getBrand(1089);
 
-export default exampleData;
+module.exports.data = data;

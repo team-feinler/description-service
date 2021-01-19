@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import exampleData from './data.js';
-console.log(exampleData);
+// import data from './data.js';
+// console.log(data);
 
 class App extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
-      items: exampleData
+      items: null
     };
   }
 
