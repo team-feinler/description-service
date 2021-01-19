@@ -7,8 +7,25 @@ db.once('open', function () {
   console.log('CONNECTED TO MONGO');
 });
 
+const data = require('./data.js');
 
-const descriptionSchema = mongoose.Schema({
+
+
+var fakeData = data.data;
+
+// db.Description.insertMany(fakeData)
+//   .then(function() {
+//     console.log('DATA SUCCESSFULLY INSERTED');
+//   }).catch(function(error) {
+//     console.log('ERROR INSERTING DATA');
+//   });
+
+// var fakeData = data.generateData();
+// console.log(fakeData);
+// const seeder = require('./seeding.js');
+// console.log(seeder);
+
+const descriptionSchema = new mongoose.Schema({
   productId: Number,
   itemName: String,
   itemDescription: Array,
@@ -22,5 +39,7 @@ const descriptionSchema = mongoose.Schema({
 
 const Description = mongoose.model('Description', descriptionSchema);
 
+//seed script to populate DB
+Description.insertMany(fakeData);
 
 module.exports.Description = Description;
