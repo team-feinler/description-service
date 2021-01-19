@@ -211,21 +211,6 @@ var generateData = () => {
 generateData();
 
 
-// data = JSON.stringify(data);
-
-// script to seed data
-const mongoose = require('mongoose');
-const Description = require('./database.js');
-const db = require('./database.js');
-
-// var seedData = db.Description.insertMany(data)
-//   .then(function() {
-//     console.log('DATA SUCCESSFULLY INSERTED');
-//   }).catch(function(error) {
-//     console.log('ERROR INSERTING DATA');
-//   });
-// // seedData();
-
 module.exports.data = data;
-// module.exports.seedData = seedData;
+
 

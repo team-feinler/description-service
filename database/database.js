@@ -22,15 +22,16 @@ const descriptionSchema = new mongoose.Schema({
 
 const Description = mongoose.model('Description', descriptionSchema);
 
-const data = require('./data.js');
-var fakeData = data.data;
+// const data = require('./data.js');
+// var fakeData = data.data;
 
-Description.count({}, function(err, count) {
-  if (count !== 100) {
-    //seed script to populate DB
-    Description.insertMany(fakeData)
-      .then(() => console.log('DATA SUCCESSFULLY SEEDED'))
-      .catch((err) => console.log('ERROR SEEDING DATA', err));
-    module.exports.Description = Description;
-  }
-});
+// Description.count({}, function(err, count) {
+//   if (count !== 100) {
+//     //seed script to populate DB
+//     Description.insertMany(fakeData)
+//       .then(() => console.log('DATA SUCCESSFULLY SEEDED'))
+//       .catch((err) => console.log('ERROR SEEDING DATA', err));
+//     module.exports.Description = Description;
+//   }
+// });
+module.exports.Description = Description;
