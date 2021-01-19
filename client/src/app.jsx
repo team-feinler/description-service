@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import exampleData from './exampleData.js';
+import exampleData from './data.js';
 console.log(exampleData);
 
 class App extends React.Component {
@@ -11,10 +11,13 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   render () {
     return (
-      // <h1></h1>
-      <p>{this.state.items}</p>
+      <h1>HELLO SERVICE IS RUNNING!</h1>
     );
   }
 }

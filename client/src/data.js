@@ -118,8 +118,13 @@ var generateData = () => {
   //creat an array of three colors
   var colorOptions = ['black', 'white', 'gray'];
   var colorIndex = 0;
+
+  //need some items to have the same name and only have a different color in the name
   var name = null;
   var nameCount = 0;
+  //need the similar items except for different colors to have the same description
+  var description = null;
+
   //loop through numbers starting at 1000 to 1100
   for (var i = 1000; i < 1100; i++) {
     //create a new item object
@@ -130,17 +135,21 @@ var generateData = () => {
     newItemObject.color = colorOptions[colorIndex];
 
     //set property name, call createItemName passing in color
+    //everyItem with same name but different color needs the description to be the same
     if (nameCount === 1) {
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
-      // nameCount++;
+      newItemObject.itemDescription = description;
     }
     if (nameCount === 0) {
       name = createItemName();
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
-      // nameCount++;
+      description = createItemDescription();
+      //set property description by calling
+      newItemObject.itemDescription = description;
     }
     if (nameCount === 2) {
       newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      newItemObject.itemDescription = description;
       nameCount = 0;
     } else {
       nameCount++;
@@ -158,12 +167,6 @@ var generateData = () => {
     } else {
       colorIndex++;
     }
-
-    //set property description by calling
-    //everyItem with same name but different color needs the description to be the same
-    newItemObject.itemDescription = createItemDescription();
-
-
     //set property Brand
     newItemObject.brand = getBrand(i);
     //set property isPrimeFreeOneDay to either true or false
