@@ -180,6 +180,6 @@ var generateData = () => {
   return data;
 };
 
-module.exports.generateData = generateData;
+module.exports = generateData;
 
 
