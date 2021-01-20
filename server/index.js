@@ -10,8 +10,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/description/1000', (req, res) => {
-  var data = db.findOne({productId: 1000});
-  res.send(data);
+  var data = db.getDescriptionForOneProduct(1000, (err, description) => {
+    res.send(description);
+  });
 });
 
 app.listen(port, () =>

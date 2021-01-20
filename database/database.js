@@ -22,6 +22,17 @@ const descriptionSchema = new mongoose.Schema({
 
 const Description = mongoose.model('Description', descriptionSchema);
 
+//get Data for one product by using productId
+var getDescriptionForOneProduct = (id, callback) => {
+  Description.find({productId: id}, function(err, description) {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(null, description);
+    }
+  });
+};
+
 
 module.exports.Description = Description;
 module.exports.getDescriptionForOneProduct = getDescriptionForOneProduct;
