@@ -1,7 +1,7 @@
 {
   "name": "FEC-Blitva-Description",
   "version": "",
-  "description": "",
+  "description": "Item description service for Front End Capstone project",
   "author": "",
   "license": "",
   "engines": {
@@ -10,7 +10,8 @@
   "scripts": {
     "react-dev": "webpack --mode=development --watch",
     "server-dev": "nodemon server/index.js",
-    "seed": "node database/seeding.js"
+    "seed": "node database/seeding.js",
+    "test": "node test/test.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -25,6 +26,7 @@
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "mocha": "^8.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "webpack": "^5.13.0",

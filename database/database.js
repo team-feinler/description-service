@@ -34,5 +34,5 @@ var getDescriptionForOneProduct = (id, callback) => {
 };
 
 
-module.exports.Description = Description;
+module.exports = Description;
 module.exports.getDescriptionForOneProduct = getDescriptionForOneProduct;
