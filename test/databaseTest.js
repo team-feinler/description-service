@@ -9,13 +9,11 @@ const expect = require('expect.js');
 //need generate Data function
 //need collection of description data
 //test to see if 100 records are inserted into the DB
-describe('Database seed', () => {
-  describe('Generate Data', () => {
+describe('GENERATE DATA', () => {
 
-    it('should create an array of 100 records for the database', () => {
-      let records = generateData();
-      assert.equal(records.length, 100);
-    });
+  it('should create an array of 100 records for the database', () => {
+    let records = generateData();
+    assert.equal(records.length, 100);
   });
 
   it('should provide each record with a productId between 1000 and 1100', () => {
@@ -27,5 +25,26 @@ describe('Database seed', () => {
   });
 });
 
-// });
+describe('SEED DATABASE', () => {
+  mongoose.connect('mongodb://localhost/ItemDescription');
+  mongoose.connection
+    .on('error', console.error.bind(console, 'connection error:'))
+    .once('open', function () {
+      console.log('CONNECTED TO MONGO FOR TESTING');
+    });
 
+  beforeEach((done) => {
+    db.collections.descriptions.drop(() => {
+      done();
+    });
+  });
+
+  it('should insert a record into the database', (done) => {
+    const item = new Description({productId: 1000});
+    item.save()
+      .then(() => {
+        assert(!item.isNew);
+        done();
+      });
+  });
+});

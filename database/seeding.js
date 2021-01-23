@@ -9,7 +9,7 @@ Description.count({}, function(err, count) {
     //seed script to populate DB
     Description.insertMany(fakeData)
       .then(() => console.log('DATA SUCCESSFULLY SEEDED'))
-      .catch((err) => console.log('ERROR SEEDING DATA', err));
-    module.exports.Description = Description;
+      .catch((err) => console.log('ERROR SEEDING DATA', err))
+      .finally(() => mongoose.connection.close());
   }
 });
