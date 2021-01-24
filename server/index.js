@@ -15,12 +15,21 @@ app.use(bodyParser.json());
 //get one item's description
 app.get('/description/:productId', (req, res) => {
   let productId = req.params.productId;
-  let data = query.getDescriptionForOneProduct(productId, (err, description) => {
+  let itemDescription = query.getDescriptionForOneProduct(productId, (err, description) => {
     res.status(200).send(description);
   });
 });
 
 //get multiple item descriptions
+app.post('/description/multiple', (req, res) => {
+  //will recieve an array of multiple productId
+  let productIds = req.body;
+  //should I limit the number of product descriptions one can get?
+  let multipleItemDescriptions = query.getDescriptionForMultipleProducts(productIds, (err, descriptions) => {
+    //sends back an array of descriptions
+    res.status(200).send(descriptions);
+  });
+});
 
 app.listen(port, () =>
   console.log(`listening on port ${port}`));

@@ -2,7 +2,7 @@ const db = require('./database.js');
 const Description = require('./database.js');
 
 
-var getDescriptionForOneProduct = (id, callback) => {
+const getDescriptionForOneProduct = (id, callback) => {
   Description.find({productId: id}, function(err, description) {
     if (err) {
       console.log(err);
@@ -12,5 +12,18 @@ var getDescriptionForOneProduct = (id, callback) => {
   });
 };
 
+const getDescriptionForMultipleProducts = (ids, callback) => {
+  Description.find({productId: { $in: ids } }, function(err, descriptions) {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(null, descriptions);
+    }
+  });
+};
 
-module.exports.getDescriptionForOneProduct = getDescriptionForOneProduct;
+
+module.exports = {
+  getDescriptionForOneProduct: getDescriptionForOneProduct,
+  getDescriptionForMultipleProducts: getDescriptionForMultipleProducts
+};
