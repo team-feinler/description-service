@@ -39,6 +39,12 @@ describe('SEED DATABASE', () => {
     });
   });
 
+  afterEach((done) => {
+    db.collections.descriptions.drop(() => {
+      done();
+    });
+  });
+
   it('should insert a record into the database', (done) => {
     const item = new Description({productId: 1000});
     item.save()

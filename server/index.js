@@ -9,11 +9,17 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.get('/description/1000', (req, res) => {
-  var data = db.getDescriptionForOneProduct(1000, (err, description) => {
+
+//
+//get one item's description
+app.get('/description/productId', (req, res) => {
+  let productId = req.params.productId;
+  let data = db.getDescriptionForOneProduct(1000, (err, description) => {
     res.send(description);
   });
 });
+
+//get multiple item descriptions
 
 app.listen(port, () =>
   console.log(`listening on port ${port}`));
