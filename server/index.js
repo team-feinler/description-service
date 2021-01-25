@@ -1,5 +1,5 @@
 const express = require('express');
-const port = 4004;
+// const port = 4004;
 const app = express();
 const db = require('../database/database.js');
 const seeder = require('../database/seeding.js');
@@ -39,5 +39,7 @@ app.post('/description/multiple', (req, res) => {
   });
 });
 
-app.listen(port, () =>
-  console.log(`listening on port ${port}`));
+// app.listen(port, () =>
+//   console.log(`listening on port ${port}`));
+
+module.exports = app;
