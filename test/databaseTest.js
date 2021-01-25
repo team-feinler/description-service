@@ -11,17 +11,19 @@ const expect = require('expect.js');
 //test to see if 100 records are inserted into the DB
 describe('GENERATE DATA', () => {
 
-  it('should create an array of 100 records for the database', () => {
+  it('should create an array of 100 records for the database', async (done) => {
     let records = generateData();
     assert.equal(records.length, 100);
+    done();
   });
 
-  it('should provide each record with a productId between 1000 and 1100', () => {
+  it('should provide each record with a productId between 1000 and 1100', async (done) => {
     let records = generateData();
     let recordIndex = Math.floor(Math.random() * (1100 - 1000));
     let productId = records[recordIndex].productId;//random productId
     expect(productId).to.be.greaterThan(999);
     expect(productId).to.be.lessThan(1101);
+    done();
   });
 });
 
