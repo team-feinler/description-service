@@ -12,7 +12,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:4004/',
+      success: (data) => {
+        console.log(data);
+      }
+    });
   }
 
   render () {

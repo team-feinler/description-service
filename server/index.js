@@ -1,14 +1,18 @@
 const express = require('express');
-// let port = 4004;
+const port = 4004;
 const app = express();
 const db = require('../database/database.js');
 const seeder = require('../database/seeding.js');
 const bodyParser = require('body-parser');
 const query = require('../database/query.js');
+const cors = require('cors');
+const morgan = require('morgan');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
+app.use(morgan('tiny'));
 
 
 
@@ -39,7 +43,7 @@ app.post('/description/multiple', (req, res) => {
   });
 });
 
-// app.listen(port, () =>
-//   console.log(`listening on port ${port}`));
+app.listen(port, () =>
+  console.log(`listening on port ${port}`));
 
 module.exports = app;
