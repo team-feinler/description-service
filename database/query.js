@@ -5,7 +5,7 @@ const Description = require('./database.js');
 const getDescriptionForOneProduct = (id, callback) => {
   Description.find({productId: id}, function(err, description) {
     if (err) {
-      console.log(err);
+      callback(err, null);
     } else {
       callback(null, description);
     }
@@ -15,7 +15,7 @@ const getDescriptionForOneProduct = (id, callback) => {
 const getDescriptionForMultipleProducts = (ids, callback) => {
   Description.find({productId: { $in: ids } }, function(err, descriptions) {
     if (err) {
-      console.log(err);
+      callback(err, null);
     } else {
       callback(null, descriptions);
     }

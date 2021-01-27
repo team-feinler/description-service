@@ -162,7 +162,10 @@ var generateData = () => {
     } else {
       nameCount++;
     }
-    newItemObject.similarItems = getAvailableColors(i, colorOptions[colorIndex]);
+
+    // if (i === 1099) {
+    //   newItemObject.similarItems = [1098, 1097];
+    // }
     //if colorIndex = 2 then reset to 0
     //if last item was black then next item is white and if white then gray and if gray then black
     if (colorIndex === 2) {
