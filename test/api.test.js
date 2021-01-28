@@ -5,7 +5,6 @@ import 'regenerator-runtime/runtime';
 
 describe('API Endpoints', () => {
   describe('/description/:productId Endpoint', () => {
-
     test('/description/:productId endpoint will respond with 200 if productId is between 1000-1099', async (done) => {
       const response = await request.get('/description/1001');
       expect(response.status).toBe(200);
