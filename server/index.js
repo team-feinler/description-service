@@ -22,6 +22,7 @@ app.get('/description/:productId', (req, res, next) => {
   query.getDescriptionForOneProduct(productId, (err, description) => {
     if (description.length === 0) {
       res.sendStatus(404);
+      next();
     } else {
       res.status(200).send(description);
       next();
@@ -36,11 +37,11 @@ app.post('/description/multiple', (req, res, next) => {
   let multipleItemDescriptions = query.getDescriptionForMultipleProducts(productIds, (err, descriptions) => {
     if (err) {
       res.sendStatus(404);
+      next();
     } else {
       res.status(200).send(descriptions);
       next();
     }
-    //sends back an array of descriptions
   });
 });
 

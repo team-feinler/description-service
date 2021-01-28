@@ -22,8 +22,21 @@ const getDescriptionForMultipleProducts = (ids, callback) => {
   });
 };
 
+const deleteProduct = (id, callback) => {
+  Description.deleteOne({productId: id}, function(err, res) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, res);
+    }
+  });
+};
+
+
+
 
 module.exports = {
   getDescriptionForOneProduct: getDescriptionForOneProduct,
-  getDescriptionForMultipleProducts: getDescriptionForMultipleProducts
+  getDescriptionForMultipleProducts: getDescriptionForMultipleProducts,
+  deleteProduct: deleteProduct
 };

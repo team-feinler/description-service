@@ -1,11 +1,11 @@
 const app = require('../server/index.js');
 const supertest = require('supertest');
 const request = supertest(app);
-
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime';
 
 describe('API Endpoints', () => {
   describe('/description/:productId Endpoint', () => {
+
     test('/description/:productId endpoint will respond with 200 if productId is between 1000-1099', async (done) => {
       const response = await request.get('/description/1001');
       expect(response.status).toBe(200);
@@ -14,7 +14,6 @@ describe('API Endpoints', () => {
 
     test('/description/:productId endpoint will respond with 404 if productId is not found', async (done) => {
       const response = await request.get('/description/990');
-      console.log(response.status);
       expect(response.status).toBe(404);
       done();
     })

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/ItemDescription', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost/ItemDescription', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: false, poolSize: 10})
   .then((res) => { console.log('MONGO CONNECTED'); })
   .catch(err => console.log(err));
 
