@@ -31,9 +31,14 @@ app.get('/description/:productId', (req, res, next) => {
 });
 
 //get multiple item descriptions
-app.post('/description/multiple', (req, res, next) => {
+app.get('/descriptions', (req, res, next) => {
   //will recieve an array of multiple productId
-  let productIds = req.body.productIds;
+  // let productIds = req.body.productId;
+  let productIdsObj = req.query;
+  let productIds = Object.values(productIdsObj);
+  for (let i = 0; i < productIds.length; i++) {
+    productIds[i] = parseInt(productIds[i]);
+  }
   let multipleItemDescriptions = query.getDescriptionForMultipleProducts(productIds, (err, descriptions) => {
     if (err) {
       res.sendStatus(404);
