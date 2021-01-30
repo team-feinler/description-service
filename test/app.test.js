@@ -44,4 +44,14 @@ describe('Components Should Render', () => {
     const itemDescription = shallow(<ItemDescription />);
     expect(toJson(itemDescription)).toMatchSnapshot();
   });
+
+  test('Rating component should render correctly', () => {
+    const rating = shallow(<Rating />);
+    expect(toJson(rating)).toMatchSnapshot();
+  });
+
+  test('AnsweredQuestions component should render correctly', () => {
+    const AnsweredQuestions = shallow(<AnsweredQuestions/>);
+    expect(toJson(AnsweredQuestions)).toMatchSnapshot();
+  });
 });

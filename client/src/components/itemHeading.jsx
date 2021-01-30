@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemInformation = (props) => (
+const ItemHeading = (props) => (
   <div>
     <div>
       title
@@ -14,4 +14,4 @@ const ItemInformation = (props) => (
   </div>
 );
 
-export default ItemInformation;
+export default ItemHeading;

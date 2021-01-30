@@ -40,6 +40,24 @@ exports[`Components Should Render App component should render correctly onto the
 </div>
 `;
 
+exports[`Components Should Render ItemColorOptions component should render correctly 1`] = `
+<div>
+  Item color options
+</div>
+`;
+
+exports[`Components Should Render ItemConfiguration component should render correctly 1`] = `
+<div>
+  Item Configuration
+</div>
+`;
+
+exports[`Components Should Render ItemDescription component should render correctly 1`] = `
+<div>
+  Item Description
+</div>
+`;
+
 exports[`Components Should Render ItemHeading component should render correctly 1`] = `
 <div>
   <div>
@@ -51,6 +69,12 @@ exports[`Components Should Render ItemHeading component should render correctly 
   <div>
     questions answered
   </div>
+</div>
+`;
+
+exports[`Components Should Render ItemPriceDetails component should render correctly 1`] = `
+<div>
+  Item price Details
 </div>
 `;
 
