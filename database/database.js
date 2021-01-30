@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ItemDescription', {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect('mongodb://localhost/ItemDescription', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: false, poolSize: 10})
+  .then((res) => { console.log('MONGO CONNECTED'); })
+  .catch(err => console.log(err));
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -22,6 +25,4 @@ const descriptionSchema = new mongoose.Schema({
 
 const Description = mongoose.model('Description', descriptionSchema);
 
-
-module.exports.Description = Description;
-module.exports.getDescriptionForOneProduct = getDescriptionForOneProduct;
+module.exports = Description;
