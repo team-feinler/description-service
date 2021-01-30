@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-// import data from './data.js';
-// console.log(data);
 
 class App extends React.Component {
   constructor(props) {
@@ -13,10 +11,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.post('/description/multiple', {productIds: [1001, 1002]})
-      .then((res) => {
-        console.log(res.data);
-      });
   }
 
   render () {
@@ -25,5 +19,5 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
+// ReactDOM.render(<App />, document.getElementById('app'));

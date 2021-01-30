@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components Should Render App component should render correctly onto the page 1`] = `
+<h1>
+  HELLO SERVICE IS RUNNING!
+</h1>
+`;
