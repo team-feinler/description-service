@@ -17,10 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
-      item: exampleData,
-      ratings: 20500,
-      price: 70,
-      answeredQuestions: 435
+      item: exampleData
     };
   }
 
@@ -47,17 +44,17 @@ class App extends React.Component {
         </div>
         <div id="rating" class="descriptionCol">
           <div>
-            <Rating numOfRating={this.state.ratings} />
+            <Rating numOfRating={this.state.item.ratings} />
           </div>
         </div>
         <div id="answeredQuestions" class="descriptionCol">
           <div>
-            <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
+            <AnsweredQuestions numOfAnswers={this.state.item.answeredQuestions}/>
           </div>
         </div>
         <div id="priceDetails" class="descriptionCol">
           <div>
-            <Price price={this.state.price} />
+            <Price price={this.state.item.price} />
           </div>
         </div>
         <div id="colorOptions" class="descriptionCol">

@@ -8,7 +8,10 @@ let exampleItem = {
   configuration: ['no echo', '1st gen', 'with bulbs on it mounted'],
   brand: 'Amazon',
   isFreeDelivery: true,
-  isPrimeFreeOneDay: true
+  isPrimeFreeOneDay: true,
+  ratings: 20500,
+  price: 70,
+  answeredQuestions: 435
 };
 
 export default exampleItem;
