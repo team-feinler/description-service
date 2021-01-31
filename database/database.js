@@ -10,7 +10,6 @@ db.once('open', function () {
   console.log('CONNECTED TO MONGO');
 });
 
-
 const descriptionSchema = new mongoose.Schema({
   productId: Number,
   itemName: String,

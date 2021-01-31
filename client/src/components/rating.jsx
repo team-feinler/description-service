@@ -1,8 +1,11 @@
 import React from 'react';
+import { BlueText } from '../style.js';
 
 const Rating = (props) => (
   <div>
-    {props.numOfRating} ratings
+    <BlueText>
+      {props.numOfRating} ratings
+    </BlueText>
   </div>
 );
 

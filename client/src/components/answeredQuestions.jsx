@@ -1,8 +1,11 @@
 import React from 'react';
+import { BlueText } from '../style.js';
 
 const AnsweredQuestions = (props) => (
   <div>
-    {props.numOfAnswers} answered questions
+    <BlueText>
+      {props.numOfAnswers} answered questions
+    </BlueText>
   </div>
 );
 

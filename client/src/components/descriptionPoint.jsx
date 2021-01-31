@@ -1,9 +1,10 @@
 import React from 'react';
+import { DesPoint } from '../style.js';
 
 const DescriptionPoint = (props) => (
-  <div>
+  <DesPoint>
     {props.description}
-  </div>
+  </DesPoint>
 );
 
 export default DescriptionPoint;
