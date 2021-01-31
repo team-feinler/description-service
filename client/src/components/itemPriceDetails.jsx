@@ -1,7 +1,9 @@
 import React from 'react';
 
 const ItemPriceDetails = (props) => (
-  <div>Item price Details</div>
+  <div>
+    PRICE: {props.price}
+  </div>
 );
 
 export default ItemPriceDetails;

@@ -1,25 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Components Should Render All components should render correctly onto the page 1`] = `
-<h1>
-  HELLO SERVICE IS RUNNING!
-</h1>
-`;
-
-exports[`Components Should Render All components should render correctly onto the page 2`] = `
-<div>
-  <div>
-    title
-  </div>
-  <div>
-    ratings
-  </div>
-  <div>
-    questions answered
-  </div>
-</div>
-`;
-
 exports[`Components Should Render App component should render correctly onto the page 1`] = `
 <h1>
   HELLO SERVICE IS RUNNING!
@@ -40,11 +20,7 @@ exports[`Components Should Render App component should render correctly onto the
 </div>
 `;
 
-exports[`Components Should Render ItemColorOptions component should render correctly 1`] = `
-<div>
-  Item color options
-</div>
-`;
+exports[`Components Should Render ItemColorOptions component should render correctly 1`] = `<div />`;
 
 exports[`Components Should Render ItemConfiguration component should render correctly 1`] = `
 <div>
@@ -75,19 +51,5 @@ exports[`Components Should Render ItemHeading component should render correctly 
 exports[`Components Should Render ItemPriceDetails component should render correctly 1`] = `
 <div>
   Item price Details
-</div>
-`;
-
-exports[`Components Should Render Title component should render 1`] = `
-<div>
-  <div>
-    title
-  </div>
-  <div>
-    ratings
-  </div>
-  <div>
-    questions answered
-  </div>
 </div>
 `;

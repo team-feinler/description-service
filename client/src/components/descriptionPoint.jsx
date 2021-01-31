@@ -1,7 +1,9 @@
 import React from 'react';
 
 const DescriptionPoint = (props) => (
-  <div></div>
+  <div>
+    {props.description}
+  </div>
 );
 
 export default DescriptionPoint;

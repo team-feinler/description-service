@@ -1,7 +1,9 @@
 import React from 'react';
 
 const AnsweredQuestions = (props) => (
-  <div>AnsweredQuestions</div>
+  <div>
+    {props.numOfAnswers} answered questions
+  </div>
 );
 
 export default AnsweredQuestions;

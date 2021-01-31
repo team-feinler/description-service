@@ -3,7 +3,7 @@ import React from 'react';
 const ItemHeading = (props) => (
   <div>
     <div>
-      title
+      {props.heading}
     </div>
     <div>
       ratings

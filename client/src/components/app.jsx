@@ -8,6 +8,8 @@ import ItemConfiguration from './itemConfiguration.jsx';
 import ItemDescription from './itemDescription.jsx';
 import ItemPriceDetails from './itemPriceDetails.jsx';
 import Rating from './rating.jsx';
+import Price from './itemPriceDetails.jsx';
+import exampleData from '../exampleData.js';
 
 
 
@@ -15,11 +17,24 @@ class App extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
-      item: null
+      item: exampleData,
+      ratings: 20500,
+      price: 70,
+      answeredQuestions: 435
     };
   }
 
   componentDidMount() {
+    //render random item between 1000-1099
+    let randomId = Math.floor(Math.random() * (1099 - 1000 + 1) + 1000);
+    axios.get(`/description/${randomId}`)
+      .then((response) => {
+        let itemData = response.data[0];
+        this.setState({
+          item: itemData
+        });
+      });
+
   }
 
   render () {
@@ -27,40 +42,36 @@ class App extends React.Component {
       <div class="centerCol">
         <div id="itemHeading" class="descriptionCol">
           <div >
-            Item Heading
             < ItemHeading heading={this.state.item.itemName} brand={this.state.item.brand}/>
           </div>
         </div>
         <div id="rating" class="descriptionCol">
           <div>
-            Rating
+            <Rating numOfRating={this.state.ratings} />
           </div>
         </div>
         <div id="answeredQuestions" class="descriptionCol">
           <div>
-            Answered Questions
+            <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
           </div>
         </div>
         <div id="priceDetails" class="descriptionCol">
           <div>
-            Item price
+            <Price price={this.state.price} />
           </div>
         </div>
         <div id="colorOptions" class="descriptionCol">
           <div>
-            Item color options
-            <ItemColorOptions color={this.state.item.itemColor} colorOptions={this.state.item.similarItems} />
+            <ItemColorOptions color={this.state.item.itemColor} similarItems={this.state.item.similarItems} />
           </div>
         </div>
         <div id="configuartion" class="descriptionCol">
           <div>
-            Item configuration
             <ItemConfiguration configuration={this.state.item.configuration} />
           </div>
         </div>
         <div id="description" class="descriptionCol">
           <div>
-            Item Description
             <ItemDescription description={this.state.item.itemDescription} />
           </div>
         </div>

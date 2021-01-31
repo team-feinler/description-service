@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Rating = (props) => (
-  <div>Rating</div>
+  <div>
+    {props.numOfRating} ratings
+  </div>
 );
 
 export default Rating;

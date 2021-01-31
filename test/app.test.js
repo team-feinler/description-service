@@ -10,6 +10,9 @@ import ItemPriceDetails from '../client/src/components/itemPriceDetails.jsx';
 import ItemConfiguration from '../client/src/components/itemConfiguration.jsx';
 import ItemColorOptions from '../client/src/components/itemColorOptions.jsx';
 import ItemDescription from '../client/src/components/itemDescription.jsx';
+import ColorOption from '../client/src/components/colorOption.jsx';
+import ConfigurationOption from '../client/src/components/configurationOption.jsx';
+import DescriptionPoint from '../client/src/components/descriptionPoint.jsx';
 
 
 //test whether each component renders
@@ -53,5 +56,20 @@ describe('Components Should Render', () => {
   test('AnsweredQuestions component should render correctly', () => {
     const AnsweredQuestions = shallow(<AnsweredQuestions/>);
     expect(toJson(AnsweredQuestions)).toMatchSnapshot();
+  });
+
+  test('ColorOption component should render correctly', () => {
+    const ColorOption = shallow(<ColorOption/>);
+    expect(toJson(colorOption)).toMatchSnapshot();
+  });
+
+  test('ConfigurationOption component should render correctly', () => {
+    const ConfigurationOption = shallow(<ConfigurationOption/>);
+    expect(toJson(ConfigurationOption)).toMatchSnapshot();
+  });
+
+  test('DescriptionPoint component should render correctly', () => {
+    const DescriptionPoint = shallow(<DescriptionPoint/>);
+    expect(toJson(DescriptionPoint)).toMatchSnapshot();
   });
 });

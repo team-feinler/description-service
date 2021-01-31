@@ -11,7 +11,7 @@
     "react-dev": "webpack --mode=development --watch",
     "server-dev": "nodemon server/server.js",
     "seed": "node database/seeding.js",
-    "test": "jest --detectOpenHandles --passWithNoTests --runInBand"
+    "test": "jest --detectOpenHandles --passWithNoTests --runInBand --updateSnapshot"
   },
   "dependencies": {
     "axios": "^0.21.1",
