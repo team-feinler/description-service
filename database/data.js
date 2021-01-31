@@ -137,7 +137,7 @@ var generateData = () => {
     var newItemObject = {};
     newItemObject.productId = i;
     //set property "color" of either black, white, gray in that order
-    newItemObject.color = colorOptions[colorIndex];
+    newItemObject.itemColor = colorOptions[colorIndex];
     newItemObject.configuration = createConfiguration();
     //everyItem with same name but different color needs the description to be the same
     //everyItem with the same name but different color also needs the same configuration options

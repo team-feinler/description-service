@@ -24,7 +24,9 @@ app.get('/description/:productId', (req, res, next) => {
       res.sendStatus(404);
       next();
     } else {
-      res.status(200).send(description);
+      let itemData = description;
+
+      res.status(200).send(itemData);
       next();
     }
   });

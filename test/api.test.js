@@ -33,7 +33,6 @@ describe('API Endpoints', () => {
 
     test('/descriptions endpoint should send back multiple descriptions', async (done) => {
       const res = await request.get('/descriptions/?1001=1001&1002=1002&1003=1003')
-      console.log(res);
       expect(res.body.length).toBe(3);
       done();
     })
