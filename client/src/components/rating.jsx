@@ -1,15 +1,11 @@
 import React from 'react';
-import { BlueText } from '../style.js';
-import { Star } from '../style.js';
+import { BlueText, ClimatePledgeFriendlyText } from '../style.js';
 
 const Rating = (props) => (
   <div>
-    <Star></Star>
-    <Star></Star>
-    <Star></Star>
-    <Star></Star>
-    <Star></Star>
-    <BlueText> {props.numOfRating} ratings </BlueText> |
+    <BlueText> 12347 ratings </BlueText> <b>|</b>
+    <ClimatePledgeFriendlyText>Climate Pledge Friendly</ClimatePledgeFriendlyText>
+    <BlueText>Audio Speakers</BlueText>
   </div>
 );
 

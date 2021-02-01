@@ -43,8 +43,17 @@ const BlueText = styled.h6`
   line-height: 20px;
   &:hover {
     color: #C7511F;
+    cursor: pointer;
   }
   margin: 1px;
+`;
+
+const ClimatePledgeFriendlyText = styled.h5`
+  font-size: 15px;
+  line-height: 20px;
+  font-family: Arial, sans-serif;
+  color: #8FBC8F;
+  margin: 2px;
 `;
 
 const SectionDescriptionText = styled.h1`
@@ -74,6 +83,7 @@ const ConfigBox = styled.button`
   &:hover {
     background-color: #cccccc;
     border-color: #b3b3b3;
+    cursor: pointer;
   }
 `;
 
@@ -87,6 +97,22 @@ const ColorBox = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: white;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid orange;
+  }
+`;
+
+const ColorBoxBlack = styled(ColorBox)`
+  background-color: black;
+`;
+
+const ColorBoxWhite = styled(ColorBox)`
+  background-color: white;
+`;
+
+const ColorBoxGray = styled(ColorBox)`
+  background-color: gray;
 `;
 
 const HeadingBox = styled.div`
@@ -128,45 +154,6 @@ const DescriptionBox = styled.div`
   flex: 3;
 `;
 
-const Star = styled.div`
-position: relative;
-
-display: inline-block;
-width: 0;
-height: 0;
-
-margin-left: .9em;
-margin-right: .9em;
-margin-bottom: 1.2em;
-
-border-right:  .3em solid transparent;
-border-bottom: .7em  solid #FC0;
-border-left:   .3em solid transparent;
-
-font-size: 8px;
-
-&:before, &:after {
-  content: '';
-
-  display: block;
-  width: 0;
-  height: 0;
-
-  position: absolute;
-  top: .6em;
-  left: -1em;
-
-  border-right:  1em solid transparent;
-  border-bottom: .7em  solid #FC0;
-  border-left:   1em solid transparent;
-
-  transform: rotate(-35deg);
-}
-
-&:after {
-  transform: rotate(35deg);
-}
-`;
 
 const PriceText = styled.h6`
   color: #565959;
@@ -188,7 +175,6 @@ export {
   SectionDescriptionText,
   ConfigBox,
   ColorBox,
-  Star,
   PriceText,
   HeadingBox,
   RatingAndAnswersBox,
@@ -197,5 +183,9 @@ export {
   ConfigOptionBox,
   DescriptionBox,
   RatingBox,
-  AnswersBox
+  AnswersBox,
+  ClimatePledgeFriendlyText,
+  ColorBoxBlack,
+  ColorBoxGray,
+  ColorBoxWhite
 };
