@@ -1,9 +1,10 @@
 import React from 'react';
+import { ConfigBox } from '../style.js';
 
 const ConfigurationOption = (props) => (
-  <div>
+  < ConfigBox>
     {props.configOption}
-  </div>
+  </ConfigBox>
 );
 
 export default ConfigurationOption;

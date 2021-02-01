@@ -8,7 +8,7 @@ const ItemHeading = (props) => (
     </TitleText>
     <div>
       <BlueText>
-        Brand: Amazon
+        <u>Brand: Amazon</u>
       </BlueText>
     </div>
   </div>
