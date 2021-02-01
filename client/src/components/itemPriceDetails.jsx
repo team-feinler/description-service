@@ -10,8 +10,11 @@ const ItemPriceDetails = (props) => (
     <br></br>
     <PriceText>You Save:</PriceText> <PriceSavedText>$20 (33%)</PriceSavedText>
     <div>Order it now.</div>
+    <br></br>
+    <br></br>
     <div>FREE Delivery <b>Jan 29 - Feb 3</b> for Prime members</div>
     <BlueText>Details</BlueText>
+    <br></br>
     <div>Ships from and sold by {props.brand}.com Services LLC.</div>
   </div>
 );

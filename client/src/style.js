@@ -10,7 +10,6 @@ const DescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px #ccc solid;
   width: 500px;
  `;
 
@@ -138,6 +137,8 @@ const RatingAndAnswersBox = styled.div`
   margin: 0;
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid #ccc;
+
 `;
 
 const RatingBox = styled.div`
@@ -153,6 +154,9 @@ const AnswersBox = styled.div`
 const PriceBox = styled.div`
   flex: 2;
   margin: 1px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 `;
 
 const ColorOptionBox = styled.div`
