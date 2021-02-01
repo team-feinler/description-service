@@ -48,6 +48,12 @@ const BlueText = styled.h6`
   margin: 1px;
 `;
 
+const RatingText = styled(BlueText)`
+margin-left: auto;
+margin-right: 0;
+text-align: right;
+  `;
+
 const ClimatePledgeFriendlyText = styled.h5`
   font-size: 15px;
   line-height: 20px;
@@ -87,6 +93,13 @@ const ConfigBox = styled.button`
   }
 `;
 
+const FirstConfigBox = styled(ConfigBox)`
+  border: 1px solid #FF7F50;
+  background-color: transparent orange;
+  font-weight: 800;
+  color: #111;
+`;
+
 const ColorBox = styled.button`
   display: inline;
   border: 1px solid #cccccc;
@@ -122,7 +135,7 @@ const HeadingBox = styled.div`
 
 const RatingAndAnswersBox = styled.div`
   flex: 2;
-  margin: 1px;
+  margin: 0;
   display: flex;
   flex-direction: row;
 `;
@@ -164,8 +177,25 @@ const PriceText = styled.h6`
   display: inline;
 `;
 
+const ListPriceText = styled(PriceText)`
+  text-decoration: line-through;
+`;
+
+const WithDealPriceText = styled(PriceText)`
+  color: #B12704;
+  font-size: 17px;
+  `;
+
+const PriceSavedText = styled(PriceText)`
+  color: #B12704;
+`;
+
 
 export {
+  FirstConfigBox,
+  PriceSavedText,
+  WithDealPriceText,
+  ListPriceText,
   Wrapper,
   DesPoint,
   Des,
@@ -187,5 +217,6 @@ export {
   ClimatePledgeFriendlyText,
   ColorBoxBlack,
   ColorBoxGray,
-  ColorBoxWhite
+  ColorBoxWhite,
+  RatingText
 };

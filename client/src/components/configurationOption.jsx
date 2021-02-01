@@ -2,7 +2,7 @@ import React from 'react';
 import { ConfigBox } from '../style.js';
 
 const ConfigurationOption = (props) => (
-  < ConfigBox>
+  <ConfigBox>
     {props.configOption}
   </ConfigBox>
 );

@@ -1,9 +1,10 @@
 import React from 'react';
-import { BlueText, ClimatePledgeFriendlyText } from '../style.js';
+import { BlueText, ClimatePledgeFriendlyText, RatingText } from '../style.js';
 
 const Rating = (props) => (
+  //need to change rating num to include comma
   <div>
-    <BlueText> 12347 ratings </BlueText> <b>|</b>
+    <RatingText> 12347 ratings </RatingText>
     <ClimatePledgeFriendlyText>Climate Pledge Friendly</ClimatePledgeFriendlyText>
     <BlueText>Audio Speakers</BlueText>
   </div>
