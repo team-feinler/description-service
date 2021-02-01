@@ -23,18 +23,18 @@ class App extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   //render random item between 1000-1099
-  //   let randomId = Math.floor(Math.random() * (1099 - 1000 + 1) + 1000);
-  //   axios.get(`/description/${randomId}`)
-  //     .then((response) => {
-  //       let itemData = response.data[0];
-  //       this.setState({
-  //         item: itemData
-  //       });
-  //     });
+  componentDidMount() {
+    //render random item between 1000-1099
+    let randomId = Math.floor(Math.random() * (1099 - 1000 + 1) + 1000);
+    axios.get(`/description/${randomId}`)
+      .then((response) => {
+        let itemData = response.data[0];
+        this.setState({
+          item: itemData
+        });
+      });
 
-  // }
+  }
 
   render () {
     return (
@@ -43,7 +43,7 @@ class App extends React.Component {
           <Wrapper>
             <div id="itemHeading" class="descriptionCol">
               <div >
-                < ItemHeading heading={this.state.item.itemName} brand={this.state.item.brand}/>
+                < ItemHeading heading={this.state.item.itemName} brand={this.state.item.brand} color={this.state.item.itemColor}/>
               </div>
             </div>
             <div id="rating" class="descriptionCol">
@@ -58,7 +58,7 @@ class App extends React.Component {
             </div>
             <div id="priceDetails" class="descriptionCol">
               <div>
-                <Price price={this.state.item.price} />
+                <Price price={this.state.item.price} brand={this.state.item.brand}/>
               </div>
             </div>
             <div id="colorOptions" class="descriptionCol">

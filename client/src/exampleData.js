@@ -1,7 +1,7 @@
 
 let exampleItem = {
   itemDescription: ['here is an item', 'item description', 'random text', 'this is a test data'],
-  itemName: 'ECHO 4th gen white',
+  itemName: 'ECHO 4th gen',
   productId: 1089,
   itemColor: 'white',
   similarItems: [1087, 1088],

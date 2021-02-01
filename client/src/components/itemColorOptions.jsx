@@ -1,6 +1,8 @@
 import React from 'react';
 import ColorOption from './colorOption.jsx';
 import { SectionDescriptionText } from '../style.js';
+import { ColorBox } from '../style.js';
+
 
 const ItemColorOptions = (props) => (
   //map color options to colorOption component
@@ -8,7 +10,9 @@ const ItemColorOptions = (props) => (
   <div>
     <SectionDescriptionText>Color:</SectionDescriptionText> {props.color}
     <br></br>
-    BLACK WHITE GRAY
+    <ColorBox></ColorBox>
+    <ColorBox></ColorBox>
+    <ColorBox></ColorBox>
     <div>
       {props.similarItems.map(item => <ColorOption item={item} />
       )}

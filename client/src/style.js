@@ -55,8 +55,8 @@ const SectionDescriptionText = styled.h1`
 `;
 
 const ConfigBox = styled.button`
-  display: flex;
-  flex-direction: column;
+  margin-left: 8px;
+  margin-right: 8px;
   line-height: 20px;
   padding: 5px 10px 5px 10px;
   text-align: left;
@@ -65,13 +65,71 @@ const ConfigBox = styled.button`
   font: 400 14px Arial;
   background-color: white;
   border: 1px solid #cccccc;
-  position: relative;
   margin-bottom: 8px;
   margin-top 8px;
   &:hover {
     background-color: #cccccc;
     border-color: #b3b3b3;
   }
+`;
+
+const ColorBox = styled.button`
+  display: inline;
+  border: 1px solid #cccccc;
+  height: 40px;
+  width: 40px;
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+`;
+
+const Star = styled.div`
+position: relative;
+
+display: inline-block;
+width: 0;
+height: 0;
+
+margin-left: .9em;
+margin-right: .9em;
+margin-bottom: 1.2em;
+
+border-right:  .3em solid transparent;
+border-bottom: .7em  solid #FC0;
+border-left:   .3em solid transparent;
+
+font-size: 8px;
+
+&:before, &:after {
+  content: '';
+
+  display: block;
+  width: 0;
+  height: 0;
+
+  position: absolute;
+  top: .6em;
+  left: -1em;
+
+  border-right:  1em solid transparent;
+  border-bottom: .7em  solid #FC0;
+  border-left:   1em solid transparent;
+
+  transform: rotate(-35deg);
+}
+
+&:after {
+  transform: rotate(35deg);
+}
+`;
+
+const PriceText = styled.h6`
+  color: #565959;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 200;
 `;
 
 
@@ -83,5 +141,8 @@ export {
   TitleText,
   BlueText,
   SectionDescriptionText,
-  ConfigBox
+  ConfigBox,
+  ColorBox,
+  Star,
+  PriceText
 };

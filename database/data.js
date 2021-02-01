@@ -95,19 +95,19 @@ var getAvailableColors = (id, color) => {
   var idOne = null;
   var idTwo = null;
   //if color is black then add 1 to firstId and add 2 to secondId
-  if (color === 'black') {
+  if (color === 'Black') {
     idOne = id + 1;
     idTwo = id + 2;
     arrayOfProductIds.push(idOne, idTwo);
   }
   //if color is white then add 1 to firstId and subtract 1 from secondId
-  if (color === 'white') {
+  if (color === 'White') {
     idOne = id - 1;
     idTwo = id + 1;
     arrayOfProductIds.push(idOne, idTwo);
   }
   //if color is gray than subract 1 and 2 to id and pass into array
-  if (color === 'gray') {
+  if (color === 'Gray') {
     idOne = id - 2;
     idTwo = id - 1;
     arrayOfProductIds.push(idOne, idTwo);
@@ -123,7 +123,7 @@ var generateData = () => {
   var data = [];
   //product Ids from 1000-1100
   //creat an array of color options
-  var colorOptions = ['black', 'white', 'gray'];
+  var colorOptions = ['Black', 'White', 'Gray'];
   var colorIndex = 0;
 
   //need some items to have the same name and only have a different color in the name
@@ -142,20 +142,20 @@ var generateData = () => {
     //everyItem with same name but different color needs the description to be the same
     //everyItem with the same name but different color also needs the same configuration options
     if (nameCount === 1) {
-      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      newItemObject.itemName = name;
       newItemObject.itemDescription = description;
       newItemObject.configuration = configuration;
     }
     if (nameCount === 0) {
       name = createItemName();
-      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      newItemObject.itemName = name;
       description = createItemDescription();
       newItemObject.itemDescription = description;
       configuration = createConfiguration();
       newItemObject.configuration = configuration;
     }
     if (nameCount === 2) {
-      newItemObject.itemName = name + `, ${colorOptions[colorIndex]}`;
+      newItemObject.itemName = name;
       newItemObject.itemDescription = description;
       newItemObject.configuration = configuration;
       nameCount = 0;

@@ -4,7 +4,7 @@ import { TitleText, BlueText } from '../style.js';
 const ItemHeading = (props) => (
   <div>
     <TitleText>
-      {props.heading}
+      {props.heading} | {props.color}
     </TitleText>
     <div>
       <BlueText>
