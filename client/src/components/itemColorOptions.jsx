@@ -8,7 +8,7 @@ const ItemColorOptions = (props) => (
   //map color options to colorOption component
   //format 3 squares
   <div>
-    <SectionDescriptionText>Color:</SectionDescriptionText> {props.color}
+    <SectionDescriptionText>Color:</SectionDescriptionText> <b>{props.color}</b>
     <br></br>
     <ColorBox></ColorBox>
     <ColorBox></ColorBox>

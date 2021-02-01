@@ -9,9 +9,7 @@ const Rating = (props) => (
     <Star></Star>
     <Star></Star>
     <Star></Star>
-    <BlueText>
-      {props.numOfRating} ratings
-    </BlueText>
+    <BlueText> {props.numOfRating} ratings </BlueText> |
   </div>
 );
 

@@ -10,6 +10,8 @@ const DescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px #ccc solid;
+  width: 500px;
  `;
 
 const DesPoint = styled.li`
@@ -31,6 +33,7 @@ const TitleText = styled.h1`
   font-weight: 400;
   font-family: Arial, sans-serif;
   color: black;
+  margin: 1px;
 `;
 
 const BlueText = styled.h6`
@@ -41,6 +44,7 @@ const BlueText = styled.h6`
   &:hover {
     color: #C7511F;
   }
+  margin: 1px;
 `;
 
 const SectionDescriptionText = styled.h1`
@@ -83,6 +87,45 @@ const ColorBox = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: white;
+`;
+
+const HeadingBox = styled.div`
+  flex: 1;
+  margin: 1px;
+`;
+
+const RatingAndAnswersBox = styled.div`
+  flex: 2;
+  margin: 1px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const RatingBox = styled.div`
+  flex: 1;
+  order: 1;
+`;
+
+const AnswersBox = styled.div`
+  flex: 1;
+  order:2;
+`;
+
+const PriceBox = styled.div`
+  flex: 2;
+  margin: 1px;
+`;
+
+const ColorOptionBox = styled.div`
+  flex: 1;
+`;
+
+const ConfigOptionBox = styled.div`
+  flex: 1;
+`;
+
+const DescriptionBox = styled.div`
+  flex: 3;
 `;
 
 const Star = styled.div`
@@ -130,6 +173,8 @@ const PriceText = styled.h6`
   font-size: 14px;
   line-height: 20px;
   font-weight: 200;
+  margin: 5px;
+  display: inline;
 `;
 
 
@@ -144,5 +189,13 @@ export {
   ConfigBox,
   ColorBox,
   Star,
-  PriceText
+  PriceText,
+  HeadingBox,
+  RatingAndAnswersBox,
+  PriceBox,
+  ColorOptionBox,
+  ConfigOptionBox,
+  DescriptionBox,
+  RatingBox,
+  AnswersBox
 };

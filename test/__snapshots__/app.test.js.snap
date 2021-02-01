@@ -1,23 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components Should Render App component should render correctly onto the page 1`] = `
-<h1>
-  HELLO SERVICE IS RUNNING!
-</h1>
-`;
-
-exports[`Components Should Render App component should render correctly onto the page 2`] = `
-<div>
-  <div>
-    title
+<style__DescriptionContainer>
+  <div
+    class="centerCol"
+  >
+    <style__Wrapper>
+      <div
+        class="descriptionCol"
+        id="itemHeading"
+      >
+        <div>
+          <ItemHeading
+            brand="Amazon"
+            color="white"
+            heading="ECHO 4th gen"
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="rating"
+      >
+        <div>
+          <Rating
+            numOfRating={20500}
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="answeredQuestions"
+      >
+        <div>
+          <AnsweredQuestions
+            numOfAnswers={435}
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="priceDetails"
+      >
+        <div>
+          <ItemPriceDetails
+            brand="Amazon"
+            price={70}
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="colorOptions"
+      >
+        <div>
+          <ItemColorOptions
+            color="white"
+            similarItems={
+              Array [
+                1087,
+                1088,
+              ]
+            }
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="configuartion"
+      >
+        <div>
+          <ItemConfiguration
+            configuration={
+              Array [
+                "no echo",
+                "1st gen",
+                "with bulbs on it mounted",
+              ]
+            }
+          />
+        </div>
+      </div>
+      <div
+        class="descriptionCol"
+        id="description"
+      >
+        <div>
+          <ItemDescription
+            description={
+              Array [
+                "here is an item",
+                "item description",
+                "random text",
+                "this is a test data",
+              ]
+            }
+          />
+        </div>
+      </div>
+    </style__Wrapper>
   </div>
-  <div>
-    ratings
-  </div>
-  <div>
-    questions answered
-  </div>
-</div>
+</style__DescriptionContainer>
 `;
 
 exports[`Components Should Render ItemColorOptions component should render correctly 1`] = `<div />`;
@@ -36,20 +119,47 @@ exports[`Components Should Render ItemDescription component should render correc
 
 exports[`Components Should Render ItemHeading component should render correctly 1`] = `
 <div>
+  <style__TitleText>
+     | 
+  </style__TitleText>
   <div>
-    title
-  </div>
-  <div>
-    ratings
-  </div>
-  <div>
-    questions answered
+    <style__BlueText>
+      <u>
+        Brand: Amazon
+      </u>
+    </style__BlueText>
   </div>
 </div>
 `;
 
 exports[`Components Should Render ItemPriceDetails component should render correctly 1`] = `
 <div>
-  Item price Details
+  <style__PriceText>
+    List Price: 
+  </style__PriceText>
+  <style__PriceText>
+    With Deal:
+  </style__PriceText>
+   
+  <style__PriceText>
+    You Save:
+  </style__PriceText>
+  <div>
+    Order it now.
+  </div>
+  <div>
+    FREE Delivery 
+    <b>
+      Jan 29 - Feb 3
+    </b>
+     for Prime members
+  </div>
+  <style__BlueText>
+    Details
+  </style__BlueText>
+  <div>
+    Ships from and sold by 
+    .com Services LLC.
+  </div>
 </div>
 `;

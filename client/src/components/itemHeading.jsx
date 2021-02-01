@@ -6,11 +6,9 @@ const ItemHeading = (props) => (
     <TitleText>
       {props.heading} | {props.color}
     </TitleText>
-    <div>
-      <BlueText>
-        <u>Brand: Amazon</u>
-      </BlueText>
-    </div>
+    <BlueText>
+      <u>Brand: {props.brand}</u>
+    </BlueText>
   </div>
 );
 
