@@ -48,7 +48,7 @@ const BlueText = styled.h6`
 `;
 
 const RatingText = styled(BlueText)`
-margin-left: auto;
+margin-left: 70px;
 margin-right: 0;
 text-align: right;
   `;
@@ -144,6 +144,8 @@ const RatingAndAnswersBox = styled.div`
 const RatingBox = styled.div`
   flex: 1;
   order: 1;
+  flex-direction: row;
+  display: flex;
 `;
 
 const AnswersBox = styled.div`
