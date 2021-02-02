@@ -171,6 +171,10 @@ const DescriptionBox = styled.div`
   flex: 3;
 `;
 
+const Image = styled.img`
+  height: 5px;
+  width: 5px;
+`;
 
 const PriceText = styled.h6`
   color: #565959;
@@ -196,6 +200,7 @@ const PriceSavedText = styled(PriceText)`
 
 
 export {
+  Image,
   FirstConfigBox,
   PriceSavedText,
   WithDealPriceText,
