@@ -33,6 +33,7 @@ const TitleText = styled.h1`
   font-family: Arial, sans-serif;
   color: black;
   margin: 1px;
+  text-transform: capitalize;
 `;
 
 const BlueText = styled.h6`

@@ -1,11 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Components Should Render AnsweredQuestions component should render correctly 1`] = `
+<div>
+  <style__BlueText>
+    | 457 answered questions
+  </style__BlueText>
+</div>
+`;
+
 exports[`Components Should Render App component should render correctly onto the page 1`] = `
 <style__DescriptionContainer>
   <div
     class="centerCol"
   >
-    <style__Wrapper>
+    <style__HeadingBox>
       <div
         class="descriptionCol"
         id="itemHeading"
@@ -18,26 +26,30 @@ exports[`Components Should Render App component should render correctly onto the
           />
         </div>
       </div>
-      <div
-        class="descriptionCol"
-        id="rating"
-      >
-        <div>
+    </style__HeadingBox>
+    <style__RatingAndAnswersBox>
+      <style__RatingBox>
+        <div
+          class="descriptionCol"
+          id="rating"
+        >
           <Rating
             numOfRating={20500}
           />
         </div>
-      </div>
-      <div
-        class="descriptionCol"
-        id="answeredQuestions"
-      >
-        <div>
+      </style__RatingBox>
+      <style__AnswersBox>
+        <div
+          class="descriptionCol"
+          id="answeredQuestions"
+        >
           <AnsweredQuestions
             numOfAnswers={435}
           />
         </div>
-      </div>
+      </style__AnswersBox>
+    </style__RatingAndAnswersBox>
+    <style__PriceBox>
       <div
         class="descriptionCol"
         id="priceDetails"
@@ -49,6 +61,8 @@ exports[`Components Should Render App component should render correctly onto the
           />
         </div>
       </div>
+    </style__PriceBox>
+    <style__ColorOptionBox>
       <div
         class="descriptionCol"
         id="colorOptions"
@@ -65,6 +79,8 @@ exports[`Components Should Render App component should render correctly onto the
           />
         </div>
       </div>
+    </style__ColorOptionBox>
+    <style__ConfigOptionBox>
       <div
         class="descriptionCol"
         id="configuartion"
@@ -81,6 +97,8 @@ exports[`Components Should Render App component should render correctly onto the
           />
         </div>
       </div>
+    </style__ConfigOptionBox>
+    <style__DescriptionBox>
       <div
         class="descriptionCol"
         id="description"
@@ -98,23 +116,19 @@ exports[`Components Should Render App component should render correctly onto the
           />
         </div>
       </div>
-    </style__Wrapper>
+    </style__DescriptionBox>
   </div>
 </style__DescriptionContainer>
 `;
 
-exports[`Components Should Render ItemColorOptions component should render correctly 1`] = `<div />`;
+exports[`Components Should Render ColorOption component should render correctly 1`] = `<div />`;
 
-exports[`Components Should Render ItemConfiguration component should render correctly 1`] = `
-<div>
-  Item Configuration
-</div>
-`;
+exports[`Components Should Render ConfigurationOption component should render correctly 1`] = `<style__ConfigBox />`;
 
-exports[`Components Should Render ItemDescription component should render correctly 1`] = `
-<div>
-  Item Description
-</div>
+exports[`Components Should Render DescriptionPoint component should render correctly 1`] = `
+<li>
+  <style__DesPoint />
+</li>
 `;
 
 exports[`Components Should Render ItemHeading component should render correctly 1`] = `
@@ -122,13 +136,11 @@ exports[`Components Should Render ItemHeading component should render correctly 
   <style__TitleText>
      | 
   </style__TitleText>
-  <div>
-    <style__BlueText>
-      <u>
-        Brand: Amazon
-      </u>
-    </style__BlueText>
-  </div>
+  <style__BlueText>
+    <u>
+      Brand: 
+    </u>
+  </style__BlueText>
 </div>
 `;
 
@@ -137,16 +149,32 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   <style__PriceText>
     List Price: 
   </style__PriceText>
+   
+  <style__ListPriceText>
+    $59
+  </style__ListPriceText>
+  <br />
   <style__PriceText>
     With Deal:
   </style__PriceText>
    
+  <style__WithDealPriceText>
+    $39
+  </style__WithDealPriceText>
+    Prime Free Delivery
+  <br />
   <style__PriceText>
     You Save:
   </style__PriceText>
+   
+  <style__PriceSavedText>
+    $20 (33%)
+  </style__PriceSavedText>
   <div>
     Order it now.
   </div>
+  <br />
+  <br />
   <div>
     FREE Delivery 
     <b>
@@ -157,9 +185,50 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   <style__BlueText>
     Details
   </style__BlueText>
+  <br />
   <div>
     Ships from and sold by 
     .com Services LLC.
   </div>
+</div>
+`;
+
+exports[`Components Should Render Rating component should render correctly 1`] = `
+<div>
+  <style__RatingBox>
+    <StarRatings
+      changeRating={null}
+      gradientPathName=""
+      ignoreInlineStyles={false}
+      numberOfStars={5}
+      rating={5}
+      starDimension="15px"
+      starEmptyColor="white"
+      starHoverColor="rgb(230, 67, 47)"
+      starRatedColor="orange"
+      starSpacing="1px"
+      svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+      svgIconViewBox="0 0 51 48"
+      typeOfWidget="Star"
+    />
+    <style__RatingText>
+       12347 ratings 
+    </style__RatingText>
+  </style__RatingBox>
+  <style__ClimatePledgeFriendlyText>
+    <img
+      src="https://freedesignfile.com/upload/2016/06/Globe-with-tree-logos-vector-design-02.jpg"
+      style={
+        Object {
+          "height": "22px",
+          "width": "22px",
+        }
+      }
+    />
+    Climate Pledge Friendly
+  </style__ClimatePledgeFriendlyText>
+  <style__BlueText>
+    Audio Speakers
+  </style__BlueText>
 </div>
 `;
