@@ -11,8 +11,13 @@ const app = express();
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 app.use(morgan('tiny'));
+
+const corsOptions = {
+  origin: 'http://localhost:4004',
+  optionsSuccessStatus: 200
+};
 
 
 
