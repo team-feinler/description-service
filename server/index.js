@@ -8,16 +8,22 @@ const morgan = require('morgan');
 require("dotenv").config();
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(cors());
 app.use(morgan('tiny'));
 
 
 
 //get one item's description
-app.get('/description/:productId', (req, res, next) => {
+app.get('/description/:productId', cors(corsOptions), (req, res, next) => {
   let productId = req.params.productId;
   query.getDescriptionForOneProduct(productId, (err, description) => {
     if (description.length === 0) {
@@ -33,7 +39,7 @@ app.get('/description/:productId', (req, res, next) => {
 });
 
 //get multiple item descriptions
-app.get('/descriptions', (req, res, next) => {
+app.get('/descriptions', cors(corsOptions), (req, res, next) => {
   //will recieve an array of multiple productId
   // let productIds = req.body.productId;
   let productIdsObj = req.query;
