@@ -28,7 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     //render random item between 1000-1099
     let randomId = Math.floor(Math.random() * (1099 - 1000 + 1) + 1000);
-    axios.get(`/description/${randomId}`)
+    axios.get(`http://localhost:4004/description/${randomId}`)
       .then((response) => {
         let itemData = response.data[0];
         this.setState({
