@@ -8,13 +8,16 @@ const ItemColorOptions = (props) => {
 
   const [color, setColor] = useState(props.color);
 
+  //handle box clicks which will take in productId and return productId
+
+  //pass productId up to app.jsx
   return (
     <div>
       <SectionDescriptionText>Color:</SectionDescriptionText> <b>{color}</b>
       <br></br>
-      <ColorBoxBlack onMouseEnter={() => setColor('Black')}></ColorBoxBlack>
-      <ColorBoxWhite onMouseEnter={() => setColor('White')}></ColorBoxWhite>
-      <ColorBoxGray onMouseEnter={() => setColor('Gray')}></ColorBoxGray>
+      <ColorBoxBlack onClick={() => props.handleColorBoxClick(props.similarItems[0])} onMouseEnter={() => setColor('Black')}></ColorBoxBlack>
+      <ColorBoxWhite onClick={() => props.handleColorBoxClick(props.similarItems[1])} onMouseEnter={() => setColor('White')}></ColorBoxWhite>
+      <ColorBoxGray onClick={() => props.handleColorBoxClick(props.similarItems[2])} onMouseEnter={() => setColor('Gray')}></ColorBoxGray>
       <div>
         {props.similarItems.map(item => <ColorOption item={item} />
         )}
