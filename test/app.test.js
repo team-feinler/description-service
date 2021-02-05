@@ -13,6 +13,8 @@ import ItemDescription from '../client/src/components/itemDescription.jsx';
 import ColorOption from '../client/src/components/colorOption.jsx';
 import ConfigurationOption from '../client/src/components/configurationOption.jsx';
 import DescriptionPoint from '../client/src/components/descriptionPoint.jsx';
+import AnsweredQuestions from '../client/src/components/answeredQuestions.jsx';
+import Rating from '../client/src/components/rating.jsx';
 
 
 //test whether each component renders
@@ -33,43 +35,29 @@ describe('Components Should Render', () => {
     expect(toJson(itemPriceWrapper)).toMatchSnapshot();
   });
 
-  test('ItemColorOptions component should render correctly', () => {
-    const itemColors = shallow(<ItemColorOptions />);
-    expect(toJson(itemColors)).toMatchSnapshot();
-  });
-
-  test('ItemConfiguration component should render correctly', () => {
-    const itemConfiguration = shallow(<ItemConfiguration />);
-    expect(toJson(itemConfiguration)).toMatchSnapshot();
-  });
-
-  test('ItemDescription component should render correctly', () => {
-    const itemDescription = shallow(<ItemDescription />);
-    expect(toJson(itemDescription)).toMatchSnapshot();
-  });
-
   test('Rating component should render correctly', () => {
     const rating = shallow(<Rating />);
     expect(toJson(rating)).toMatchSnapshot();
   });
 
   test('AnsweredQuestions component should render correctly', () => {
-    const AnsweredQuestions = shallow(<AnsweredQuestions/>);
-    expect(toJson(AnsweredQuestions)).toMatchSnapshot();
+    const answeredQuestions = shallow(<AnsweredQuestions/>);
+    expect(toJson(answeredQuestions)).toMatchSnapshot();
   });
 
   test('ColorOption component should render correctly', () => {
-    const ColorOption = shallow(<ColorOption/>);
+    const colorOption = shallow(<ColorOption/>);
     expect(toJson(colorOption)).toMatchSnapshot();
   });
 
   test('ConfigurationOption component should render correctly', () => {
-    const ConfigurationOption = shallow(<ConfigurationOption/>);
-    expect(toJson(ConfigurationOption)).toMatchSnapshot();
+    const configurationOption = shallow(<ConfigurationOption/>);
+    expect(toJson(configurationOption)).toMatchSnapshot();
   });
 
   test('DescriptionPoint component should render correctly', () => {
-    const DescriptionPoint = shallow(<DescriptionPoint/>);
-    expect(toJson(DescriptionPoint)).toMatchSnapshot();
+    const descriptionPoint = shallow(<DescriptionPoint/>);
+    expect(toJson(descriptionPoint)).toMatchSnapshot();
   });
 });
+
