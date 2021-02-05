@@ -6,7 +6,7 @@ const ItemPriceDetails = (props) => (
   <div>
     <PriceText>List Price: </PriceText> <ListPriceText>${Math.floor(props.price + 10).toFixed(2)}</ListPriceText>
     <br></br>
-    <PriceText>With Deal:</PriceText> <WithDealPriceText>{props.price}</WithDealPriceText>  Prime Free Delivery
+    <PriceText>With Deal:</PriceText> <WithDealPriceText>${props.price}</WithDealPriceText>  Prime Free Delivery
     <br></br>
     <PriceText>You Save:</PriceText> <PriceSavedText>${10.00.toFixed(2)} ({Math.floor((((props.price + 10) - (props.price)) / (props.price + 10)) * 100)}%) </PriceSavedText>
     <div>Order it now.</div>

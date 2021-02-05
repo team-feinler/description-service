@@ -59,7 +59,7 @@ class App extends React.Component {
       });
   }
 
-  //hanlde color box click
+  //handle color box click
   handleColorBoxClick (id) {
     //will make call to /description/${productId}
     let productId = id;
@@ -68,7 +68,10 @@ class App extends React.Component {
         let itemData = response.data[0];
         this.setState({
           item: itemData
-        });
+        })
+          .catch((error) => {
+            console.log(error);
+          });
       });
   }
 

@@ -15,9 +15,9 @@ const ItemColorOptions = (props) => {
     <div>
       <SectionDescriptionText>Color:</SectionDescriptionText> <b>{color}</b>
       <br></br>
-      <ColorBoxBlack onClick={() => props.handleColorBoxClick(props.similarItems[0])} onMouseEnter={() => setColor('Black')}></ColorBoxBlack>
-      <ColorBoxWhite onClick={() => props.handleColorBoxClick(props.similarItems[1])} onMouseEnter={() => setColor('White')}></ColorBoxWhite>
-      <ColorBoxGray onClick={() => props.handleColorBoxClick(props.similarItems[2])} onMouseEnter={() => setColor('Gray')}></ColorBoxGray>
+      <ColorBoxBlack onClick={() => props.handleColorBoxClick(props.similarItems[0])} onMouseEnter={() => setColor('Black')} onMouseLeave={() => setColor(props.color)}></ColorBoxBlack>
+      <ColorBoxWhite onClick={() => props.handleColorBoxClick(props.similarItems[1])} onMouseEnter={() => setColor('White')} onMouseLeave={() => setColor(props.color)}></ColorBoxWhite>
+      <ColorBoxGray onClick={() => props.handleColorBoxClick(props.similarItems[2])} onMouseEnter={() => setColor('Gray')} onMouseLeave={() => setColor(props.color)}></ColorBoxGray>
       <div>
         {props.similarItems.map(item => <ColorOption item={item} />
         )}
