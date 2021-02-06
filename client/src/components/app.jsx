@@ -21,8 +21,11 @@ class App extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
-      item: exampleData
+      item: exampleData,
+      price: 20
     };
+    this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
+    this.getPrice = this.getPrice.bind(this);
   }
 
   componentDidMount() {
@@ -34,8 +37,43 @@ class App extends React.Component {
         this.setState({
           item: itemData
         });
+      })
+      .catch((error) => {
+        console.log(error);
       });
+    this.getPrice(randomId);
+  }
 
+  getPrice(id) {
+    let productId = id;
+    axios.get(`http://localhost:4003/priceandinventory/id/${productId}`)
+      .then((response) => {
+        console.log(response);
+        let itemPrice = response.data[0].price;
+        this.setState({
+          price: itemPrice
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  //handle color box click
+  handleColorBoxClick (id) {
+    //will make call to /description/${productId}
+    let productId = id;
+    axios.get(`http://localhost:4004/description/${productId}`)
+      .then((response) => {
+        let itemData = response.data[0];
+        this.setState({
+          item: itemData
+        })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    this.getPrice(productId);
   }
 
   render () {
@@ -64,14 +102,14 @@ class App extends React.Component {
           <PriceBox>
             <div id="priceDetails" class="descriptionCol">
               <div>
-                <ItemPriceDetails price={this.state.item.price} brand={this.state.item.brand}/>
+                <ItemPriceDetails price={this.state.price} brand={this.state.item.brand}/>
               </div>
             </div>
           </PriceBox>
           <ColorOptionBox>
             <div id="colorOptions" class="descriptionCol">
               <div>
-                <ItemColorOptions color={this.state.item.itemColor} similarItems={this.state.item.similarItems} />
+                <ItemColorOptions color={this.state.item.itemColor} similarItems={this.state.item.similarItems} handleColorBoxClick={this.handleColorBoxClick} />
               </div>
             </div>
           </ColorOptionBox>

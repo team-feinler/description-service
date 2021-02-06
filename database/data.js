@@ -91,6 +91,7 @@ var createConfiguration = () => {
 //function to keep track of similar items based on color
 var getAvailableColors = (id, color) => {
   //input is a color and id
+  //return array of productIds where index 0 = black, index 1 = white, index 2 = gray
   var arrayOfProductIds = [];
   var idOne = null;
   var idTwo = null;
@@ -98,19 +99,19 @@ var getAvailableColors = (id, color) => {
   if (color === 'Black') {
     idOne = id + 1;
     idTwo = id + 2;
-    arrayOfProductIds.push(idOne, idTwo);
+    arrayOfProductIds.push(id, idOne, idTwo);
   }
   //if color is white then add 1 to firstId and subtract 1 from secondId
   if (color === 'White') {
     idOne = id - 1;
     idTwo = id + 1;
-    arrayOfProductIds.push(idOne, idTwo);
+    arrayOfProductIds.push(idOne, id, idTwo);
   }
   //if color is gray than subract 1 and 2 to id and pass into array
   if (color === 'Gray') {
     idOne = id - 2;
     idTwo = id - 1;
-    arrayOfProductIds.push(idOne, idTwo);
+    arrayOfProductIds.push(idOne, idTwo, id);
   }
   //output is an array of the product Ids for the products with a similar name but different id
   return arrayOfProductIds;
@@ -163,9 +164,10 @@ var generateData = () => {
       nameCount++;
     }
 
-    // if (i === 1099) {
-    //   newItemObject.similarItems = [1098, 1097];
-    // }
+    if (i === 1099) {
+      newItemObject.similarItems = [1099, 1097, 1098];
+    }
+    newItemObject.similarItems = getAvailableColors(i, colorOptions[colorIndex]);
     //if colorIndex = 2 then reset to 0
     //if last item was black then next item is white and if white then gray and if gray then black
     if (colorIndex === 2) {

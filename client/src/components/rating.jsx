@@ -3,14 +3,7 @@ import { BlueText, ClimatePledgeFriendlyText, RatingText, Image, RatingBox} from
 import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 import {Tooltip} from 'react-tippy';
-
-
-
-
-
-
-
-
+import { Popover, isPopoverOpen } from 'react-tiny-popover';
 
 class Rating extends React.Component {
   //need to change rating num to include comma
@@ -43,6 +36,13 @@ class Rating extends React.Component {
   render () {
     return (
       <div>
+        {/* <div>
+          <Popover
+            isOpen={isPopoverOpen}
+            content={<div>HIIIIII</div>}>
+              <div onClick={() => this.setState({isPopoverOpen: !isPopoverOpen})}>CLICK ME!</div>
+          </Popover>
+        </div> */}
         <RatingBox>
           <StarRatings
             rating = {5}
