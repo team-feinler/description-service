@@ -73,6 +73,7 @@ class App extends React.Component {
             console.log(error);
           });
       });
+    this.getPrice(productId);
   }
 
   render () {
