@@ -20,15 +20,8 @@ app.use(express.static(__dirname + '/../public'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors());
-
 app.use(morgan('tiny'));
-
-const corsOptions = {
-  origin: 'http://localhost:4004',
-  optionsSuccessStatus: 200
-};
-
+app.use(cors());
 
 
 //get one item's description
@@ -40,7 +33,6 @@ app.get('/description/:productId', cors(corsOptions), (req, res, next) => {
       next();
     } else {
       let itemData = description;
-
       res.status(200).send(itemData);
       next();
     }

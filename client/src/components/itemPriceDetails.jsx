@@ -4,11 +4,11 @@ import { PriceText, BlueText, PriceSavedText, WithDealPriceText, ListPriceText }
 
 const ItemPriceDetails = (props) => (
   <div>
-    <PriceText>List Price: </PriceText> <ListPriceText>$59</ListPriceText>
+    <PriceText>List Price: </PriceText> <ListPriceText>${Math.floor(props.price + 10).toFixed(2)}</ListPriceText>
     <br></br>
-    <PriceText>With Deal:</PriceText> <WithDealPriceText>$39</WithDealPriceText>  Prime Free Delivery
+    <PriceText>With Deal:</PriceText> <WithDealPriceText>${props.price}</WithDealPriceText>  Prime Free Delivery
     <br></br>
-    <PriceText>You Save:</PriceText> <PriceSavedText>$20 (33%)</PriceSavedText>
+    <PriceText>You Save:</PriceText> <PriceSavedText>${10.00.toFixed(2)} ({Math.floor((((props.price + 10) - (props.price)) / (props.price + 10)) * 100)}%) </PriceSavedText>
     <div>Order it now.</div>
     <br></br>
     <br></br>
