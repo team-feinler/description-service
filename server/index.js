@@ -20,10 +20,8 @@ app.use(express.static(__dirname + '/../public'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-<<<<<<< HEAD
 app.use(cors());
-=======
->>>>>>> 9bbeb721bc1c5f6de49c30c54c1060229e0587e6
+
 app.use(morgan('tiny'));
 
 const corsOptions = {
