@@ -21,8 +21,18 @@ class App extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
-      item: exampleData,
-      price: 20
+      productId: null,
+      itemDescription: null,
+      brand: null,
+      itemColor: null,
+      similarItems: null,
+      itemConfiguration: null,
+      itemName: null,
+      isPrimeFreeOneDay: null,
+      isFreeDelivery: null,
+      rating: 12233,
+      price: 20,
+      answeredQuestions: 457
     };
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
@@ -36,13 +46,23 @@ class App extends React.Component {
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
+        console.log(itemData);
         this.setState({
-          item: itemData
+          productId: itemData.productId,
+          itemDescription: itemData.itemDescription,
+          brand: itemData.brand,
+          itemColor: itemData.itemColor,
+          similarItems: itemData.similarItems,
+          itemConfiguration: itemData.configuration,
+          itemName: itemData.itemName,
+          isPrimeFreeOneDay: itemData.isPrimeFreeOneDay,
+          isFreeDelivery: itemData.isFreeDelivery
         });
       })
       .catch((error) => {
         console.log(error);
       });
+    //get the price of the product
     this.getPrice(productId);
   }
 
@@ -53,7 +73,8 @@ class App extends React.Component {
         console.log(response);
         let itemPrice = response.data[0].price;
         this.setState({
-          price: itemPrice
+          price: itemPrice,
+
         });
       })
       .catch((error) => {
@@ -64,14 +85,20 @@ class App extends React.Component {
   //handle color box click
   handleColorBoxClick (id) {
     //will make call to /description/${productId}
-    // window.location.href = window.location.href + `${id}`;
-    console.log('LOGGED', window.location.href);
     let productId = id;
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         this.setState({
-          item: itemData
+          productId: itemData.productId,
+          itemDescription: itemData.itemDescription,
+          brand: itemData.brand,
+          itemColor: itemData.itemColor,
+          similarItems: itemData.similarItems,
+          itemConfiguration: itemData.configuration,
+          itemName: itemData.itemName,
+          isPrimeFreeOneDay: itemData.isPrimeFreeOneDay,
+          isFreeDelivery: itemData.isFreeDelivery
         })
           .catch((error) => {
             console.log(error);
@@ -81,55 +108,41 @@ class App extends React.Component {
   }
 
   render () {
+    if (this.state.productId === null) {
+      return (
+        <div>
+          <div><strong>BAD REQUEST - INVALID URL</strong></div>
+          <br></br>
+          <div>HTTP ERROR 400. The request URL is invalid</div>
+        </div>
+      );
+    }
+
     return (
       <DescriptionContainer>
         <div class="centerCol">
           <HeadingBox>
-            <div id="itemHeading" class="descriptionCol">
-              <div >
-                < ItemHeading heading={this.state.item.itemName} brand={this.state.item.brand} color={this.state.item.itemColor}/>
-              </div>
-            </div>
+            < ItemHeading heading={this.state.itemName} brand={this.state.brand} color={this.state.itemColor}/>
           </HeadingBox>
           <RatingAndAnswersBox>
             <RatingBox>
-              <div id="rating" class="descriptionCol">
-                <Rating numOfRating={this.state.item.ratings} />
-              </div>
+              <Rating numOfRating={this.state.ratings} />
             </RatingBox>
             <AnswersBox>
-              <div id="answeredQuestions" class="descriptionCol">
-                <AnsweredQuestions numOfAnswers={this.state.item.answeredQuestions}/>
-              </div>
+              <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
             </AnswersBox>
           </RatingAndAnswersBox>
           <PriceBox>
-            <div id="priceDetails" class="descriptionCol">
-              <div>
-                <ItemPriceDetails price={this.state.price} brand={this.state.item.brand}/>
-              </div>
-            </div>
+            <ItemPriceDetails price={this.state.price} brand={this.state.brand}/>
           </PriceBox>
           <ColorOptionBox>
-            <div id="colorOptions" class="descriptionCol">
-              <div>
-                <ItemColorOptions color={this.state.item.itemColor} similarItems={this.state.item.similarItems} handleColorBoxClick={this.handleColorBoxClick} />
-              </div>
-            </div>
+            <ItemColorOptions color={this.state.itemColor} similarItems={this.state.similarItems} handleColorBoxClick={this.handleColorBoxClick} />
           </ColorOptionBox>
           <ConfigOptionBox>
-            <div id="configuartion" class="descriptionCol">
-              <div>
-                <ItemConfiguration configuration={this.state.item.configuration} />
-              </div>
-            </div>
+            <ItemConfiguration configuration={this.state.itemConfiguration} />
           </ConfigOptionBox>
           <DescriptionBox>
-            <div id="description" class="descriptionCol">
-              <div>
-                <ItemDescription description={this.state.item.itemDescription} />
-              </div>
-            </div>
+            <ItemDescription description={this.state.itemDescription} />
           </DescriptionBox>
         </div>
       </DescriptionContainer>
