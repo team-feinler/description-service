@@ -16,12 +16,15 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.use(express.static(__dirname + '/../public'));
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
+
+app.use(express.static(__dirname + '/../public'));
+app.use('/:id', express.static(__dirname + '/../public'));
 
 
 //get one item's description

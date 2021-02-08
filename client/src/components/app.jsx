@@ -30,8 +30,10 @@ class App extends React.Component {
 
   componentDidMount() {
     //render random item between 1000-1099
-    let randomId = Math.floor(Math.random() * (1099 - 1000 + 1) + 1000);
-    axios.get(`http://localhost:4004/description/${randomId}`)
+    let url = window.location.href;
+    console.log(url);
+    let productId = url.split('/')[3] || 1000;
+    axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         this.setState({
@@ -41,7 +43,7 @@ class App extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-    this.getPrice(randomId);
+    this.getPrice(productId);
   }
 
   getPrice(id) {
@@ -62,6 +64,8 @@ class App extends React.Component {
   //handle color box click
   handleColorBoxClick (id) {
     //will make call to /description/${productId}
+    // window.location.href = window.location.href + `${id}`;
+    console.log('LOGGED', window.location.href);
     let productId = id;
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
