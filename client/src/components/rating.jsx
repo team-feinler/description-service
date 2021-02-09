@@ -3,6 +3,7 @@ import { BlueText, ClimatePledgeFriendlyText, RatingText, Image, RatingBox} from
 import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
+import Chart from './ratingChart.jsx';
 
 const Rating = (props) => {
 
@@ -35,6 +36,7 @@ const Rating = (props) => {
               <br></br>
             12347 global rating
             </div>
+            <Chart test='Hello'></Chart>
           </ReactTooltip>
         </div>
 
