@@ -74,7 +74,6 @@ class App extends React.Component {
         let itemPrice = response.data[0].price;
         this.setState({
           price: itemPrice,
-
         });
       })
       .catch((error) => {
@@ -120,7 +119,7 @@ class App extends React.Component {
 
     return (
       <DescriptionContainer>
-        <div class="centerCol">
+        <div>
           <HeadingBox>
             < ItemHeading heading={this.state.itemName} brand={this.state.brand} color={this.state.itemColor}/>
           </HeadingBox>
