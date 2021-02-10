@@ -13,6 +13,7 @@ import exampleData from '../exampleData.js';
 import { Wrapper } from '../style.js';
 import { DescriptionContainer } from '../style.js';
 import { HeadingBox, RatingAndAnswersBox, PriceBox, ColorOptionBox, ConfigOptionBox, DescriptionBox, RatingBox, AnswersBox } from '../style.js';
+import {Route} from 'react-router-dom';
 
 
 
@@ -31,8 +32,9 @@ class App extends React.Component {
       isPrimeFreeOneDay: null,
       isFreeDelivery: null,
       rating: 12233,
-      price: 20,
-      answeredQuestions: 457
+      price: null,
+      answeredQuestions: 457,
+      productInventory: null
     };
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
@@ -41,7 +43,6 @@ class App extends React.Component {
   componentDidMount() {
     //render random item between 1000-1099
     let url = window.location.href;
-    console.log(url);
     let productId = url.split('/')[3] || 1000;
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
@@ -56,7 +57,7 @@ class App extends React.Component {
           itemConfiguration: itemData.configuration,
           itemName: itemData.itemName,
           isPrimeFreeOneDay: itemData.isPrimeFreeOneDay,
-          isFreeDelivery: itemData.isFreeDelivery
+          isFreeDelivery: itemData.isFreeDelivery,
         });
       })
       .catch((error) => {
@@ -70,10 +71,12 @@ class App extends React.Component {
     let productId = id;
     axios.get(`http://localhost:4003/priceandinventory/id/${productId}`)
       .then((response) => {
-        console.log(response);
         let itemPrice = response.data[0].price;
+        let inventory = response.data[0].inventory;
+
         this.setState({
           price: itemPrice,
+          productInventory: inventory
         });
       })
       .catch((error) => {
@@ -88,6 +91,7 @@ class App extends React.Component {
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
+        window.location = `/${itemData.productId}`;
         this.setState({
           productId: itemData.productId,
           itemDescription: itemData.itemDescription,
@@ -132,7 +136,7 @@ class App extends React.Component {
             </AnswersBox>
           </RatingAndAnswersBox>
           <PriceBox>
-            <ItemPriceDetails price={this.state.price} brand={this.state.brand}/>
+            <ItemPriceDetails inventory={this.state.productInventory} price={this.state.price} brand={this.state.brand}/>
           </PriceBox>
           <ColorOptionBox>
             <ItemColorOptions color={this.state.itemColor} similarItems={this.state.similarItems} handleColorBoxClick={this.handleColorBoxClick} />
