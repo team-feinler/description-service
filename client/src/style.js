@@ -139,7 +139,7 @@ const RatingAndAnswersBox = styled.div`
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #ccc;
-
+  justify-content: flex-start;
 `;
 
 const RatingBox = styled.div`

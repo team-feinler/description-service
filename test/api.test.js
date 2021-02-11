@@ -24,15 +24,15 @@ describe('API Endpoints', () => {
     })
   })
 
-  describe('/descriptions Endpoint', () => {
-    test('/descriptions endpoint will respond with 200 if array of productIds between 1000-1090 are sent', async (done) => {
-      const res = await request.get('/descriptions/?1001=1001&1002=1002&1003=1003');
+  describe('/descriptions/multiple Endpoint', () => {
+    test('/descriptions/multiple endpoint will respond with 200 if array of productIds between 1000-1090 are sent', async (done) => {
+      const res = await request.get('/descriptions/multiple/?1001=1001&1002=1002&1003=1003');
       expect(res.status).toBe(200);
       done();
     })
 
-    test('/descriptions endpoint should send back multiple descriptions', async (done) => {
-      const res = await request.get('/descriptions/?1001=1001&1002=1002&1003=1003')
+    test('/descriptions/multiple endpoint should send back multiple descriptions', async (done) => {
+      const res = await request.get('/descriptions/multiple/?1001=1001&1002=1002&1003=1003')
       expect(res.body.length).toBe(3);
       done();
     })
