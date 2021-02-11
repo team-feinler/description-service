@@ -21,7 +21,7 @@ const Rating = (props) => {
             starEmptyColor="white"
           >
           </StarRatings></span>
-          <ReactTooltip id="test" place="bottom" effect="solid" multiline="true" backgroundColor="white" textColor='black' border="true" borderColor='black'>
+          <ReactTooltip id="test" place="bottom" effect="solid" multiline={true} backgroundColor="white" textColor='black' border={true} borderColor='black'>
             <div>
               <StarRatings
                 rating = {5}

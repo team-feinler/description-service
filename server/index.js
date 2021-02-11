@@ -40,9 +40,8 @@ app.get('/description/:productId', cors(corsOptions), (req, res, next) => {
 });
 
 //get multiple item descriptions
-app.get('/descriptions', cors(corsOptions), (req, res, next) => {
+app.get('/descriptions/multiple', (req, res, next) => {
   //will recieve an array of multiple productId
-  // let productIds = req.body.productId;
   let productIdsObj = req.query;
   let productIds = Object.values(productIdsObj);
   for (let i = 0; i < productIds.length; i++) {

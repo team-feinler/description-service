@@ -9,116 +9,17 @@ exports[`Components Should Render AnsweredQuestions component should render corr
 `;
 
 exports[`Components Should Render App component should render correctly onto the page 1`] = `
-<style__DescriptionContainer>
-  <div
-    class="centerCol"
-  >
-    <style__HeadingBox>
-      <div
-        class="descriptionCol"
-        id="itemHeading"
-      >
-        <div>
-          <ItemHeading
-            brand="Amazon"
-            color="white"
-            heading="ECHO 4th gen"
-          />
-        </div>
-      </div>
-    </style__HeadingBox>
-    <style__RatingAndAnswersBox>
-      <style__RatingBox>
-        <div
-          class="descriptionCol"
-          id="rating"
-        >
-          <Rating
-            numOfRating={20500}
-          />
-        </div>
-      </style__RatingBox>
-      <style__AnswersBox>
-        <div
-          class="descriptionCol"
-          id="answeredQuestions"
-        >
-          <AnsweredQuestions
-            numOfAnswers={435}
-          />
-        </div>
-      </style__AnswersBox>
-    </style__RatingAndAnswersBox>
-    <style__PriceBox>
-      <div
-        class="descriptionCol"
-        id="priceDetails"
-      >
-        <div>
-          <ItemPriceDetails
-            brand="Amazon"
-            price={70}
-          />
-        </div>
-      </div>
-    </style__PriceBox>
-    <style__ColorOptionBox>
-      <div
-        class="descriptionCol"
-        id="colorOptions"
-      >
-        <div>
-          <ItemColorOptions
-            color="white"
-            similarItems={
-              Array [
-                1087,
-                1088,
-              ]
-            }
-          />
-        </div>
-      </div>
-    </style__ColorOptionBox>
-    <style__ConfigOptionBox>
-      <div
-        class="descriptionCol"
-        id="configuartion"
-      >
-        <div>
-          <ItemConfiguration
-            configuration={
-              Array [
-                "no echo",
-                "1st gen",
-                "with bulbs on it mounted",
-              ]
-            }
-          />
-        </div>
-      </div>
-    </style__ConfigOptionBox>
-    <style__DescriptionBox>
-      <div
-        class="descriptionCol"
-        id="description"
-      >
-        <div>
-          <ItemDescription
-            description={
-              Array [
-                "here is an item",
-                "item description",
-                "random text",
-                "this is a test data",
-              ]
-            }
-          />
-        </div>
-      </div>
-    </style__DescriptionBox>
+<div>
+  <div>
+    <strong>
+      BAD REQUEST - INVALID URL
+    </strong>
   </div>
-</style__DescriptionContainer>
+  <br />
+  <div>
+    HTTP ERROR 400. The request URL is invalid
+  </div>
+</div>
 `;
 
 exports[`Components Should Render ColorOption component should render correctly 1`] = `<div />`;
@@ -151,7 +52,8 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   </style__PriceText>
    
   <style__ListPriceText>
-    $59
+    $
+    NaN
   </style__ListPriceText>
   <br />
   <style__PriceText>
@@ -159,7 +61,7 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   </style__PriceText>
    
   <style__WithDealPriceText>
-    $39
+    $
   </style__WithDealPriceText>
     Prime Free Delivery
   <br />
@@ -168,17 +70,23 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   </style__PriceText>
    
   <style__PriceSavedText>
-    $20 (33%)
+    $
+    10.00
+     (
+    NaN
+    %) 
   </style__PriceSavedText>
   <div>
-    Order it now.
+    Order it now
   </div>
   <br />
   <br />
   <div>
     FREE Delivery 
     <b>
-      Jan 29 - Feb 3
+      Feb 11th
+       - 
+      Feb 16th
     </b>
      for Prime members
   </div>
@@ -196,21 +104,66 @@ exports[`Components Should Render ItemPriceDetails component should render corre
 exports[`Components Should Render Rating component should render correctly 1`] = `
 <div>
   <style__RatingBox>
-    <StarRatings
-      changeRating={null}
-      gradientPathName=""
-      ignoreInlineStyles={false}
-      numberOfStars={5}
-      rating={5}
-      starDimension="15px"
-      starEmptyColor="white"
-      starHoverColor="rgb(230, 67, 47)"
-      starRatedColor="orange"
-      starSpacing="1px"
-      svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
-      svgIconViewBox="0 0 51 48"
-      typeOfWidget="Star"
-    />
+    <div>
+      <span
+        data-for="test"
+        data-tip={true}
+      >
+        <StarRatings
+          changeRating={null}
+          gradientPathName=""
+          ignoreInlineStyles={false}
+          numberOfStars={5}
+          rating={5}
+          starDimension="15px"
+          starEmptyColor="white"
+          starHoverColor="rgb(230, 67, 47)"
+          starRatedColor="orange"
+          starSpacing="1px"
+          svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+          svgIconViewBox="0 0 51 48"
+          typeOfWidget="Star"
+        />
+      </span>
+      <ReactTooltip
+        backgroundColor="white"
+        border={true}
+        borderColor="black"
+        clickable={false}
+        effect="solid"
+        id="test"
+        insecure={true}
+        multiline={true}
+        place="bottom"
+        resizeHide={true}
+        textColor="black"
+        wrapper="div"
+      >
+        <div>
+          <StarRatings
+            changeRating={null}
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            numberOfStars={5}
+            rating={5}
+            starDimension="15px"
+            starEmptyColor="white"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="orange"
+            starSpacing="1px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+          4.7 out of 5
+          <br />
+          12347 global rating
+        </div>
+        <Chart
+          test="Hello"
+        />
+      </ReactTooltip>
+    </div>
     <style__RatingText>
        12347 ratings 
     </style__RatingText>
