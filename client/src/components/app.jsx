@@ -44,7 +44,7 @@ class App extends React.Component {
     //render random item between 1000-1099
     let url = window.location.href;
     let productId = url.split('/')[3] || 1000;
-    axios.get(`http://localhost:4004/description/${productId}`)
+    axios.get(`http://18.191.193.233:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         console.log(itemData);
