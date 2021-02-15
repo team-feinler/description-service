@@ -33,18 +33,19 @@ class App extends React.Component {
       isFreeDelivery: null,
       rating: 12233,
       price: null,
-      answeredQuestions: 457,
+      answeredQuestions: null,
       productInventory: null
     };
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
+    this.getAnsweredQuestions = this.getAnsweredQuestions.bind(this);
   }
 
   componentDidMount() {
     //render random item between 1000-1099
     let url = window.location.href;
     let productId = url.split('/')[3] || 1000;
-    axios.get(`/description/${productId}`)
+    axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         console.log(itemData);
@@ -57,7 +58,7 @@ class App extends React.Component {
           itemConfiguration: itemData.configuration,
           itemName: itemData.itemName,
           isPrimeFreeOneDay: itemData.isPrimeFreeOneDay,
-          isFreeDelivery: itemData.isFreeDelivery,
+          isFreeDelivery: itemData.isFreeDelivery
         });
       })
       .catch((error) => {
@@ -65,6 +66,8 @@ class App extends React.Component {
       });
     //get the price of the product
     this.getPrice(productId);
+    //get the number of answered questions
+    this.getAnsweredQuestions(productId);
   }
 
   getPrice(id) {
@@ -73,7 +76,6 @@ class App extends React.Component {
       .then((response) => {
         let itemPrice = response.data[0].price;
         let inventory = response.data[0].inventory;
-
         this.setState({
           price: itemPrice,
           productInventory: inventory
@@ -81,6 +83,20 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+      });
+  }
+
+  getAnsweredQuestions(id) {
+    let productId = id;
+    axios.get(`http://localhost:4001/customer-questions/${productId}`)
+      .then(res => {
+        let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
+        this.setState({
+          answeredQuestions: numberOfAnsweredQuestions
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -108,6 +124,7 @@ class App extends React.Component {
           });
       });
     this.getPrice(productId);
+    this.getAnsweredQuestions(productId);
   }
 
   render () {
