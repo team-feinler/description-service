@@ -34,13 +34,13 @@ const Rating = (props) => {
               </StarRatings>
             4.7 out of 5
               <br></br>
-            12347 global rating
+              {props.numOfRating} global rating
             </div>
             <Chart test='Hello'></Chart>
           </ReactTooltip>
         </div>
 
-        <RatingText> 12347 ratings </RatingText>
+        <RatingText> {props.numOfRating} ratings </RatingText>
       </RatingBox>
       <ClimatePledgeFriendlyText>
         <img style={{height: '22px', width: '22px'}} src="https://freedesignfile.com/upload/2016/06/Globe-with-tree-logos-vector-design-02.jpg"></img>

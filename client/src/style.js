@@ -49,7 +49,7 @@ const BlueText = styled.h6`
 `;
 
 const RatingText = styled(BlueText)`
-margin-left: 70px;
+margin-left: 100px;
 margin-right: 0;
 text-align: right;
   `;

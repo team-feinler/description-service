@@ -31,7 +31,7 @@ class App extends React.Component {
       itemName: null,
       isPrimeFreeOneDay: null,
       isFreeDelivery: null,
-      rating: 12233,
+      rating: null,
       price: null,
       answeredQuestions: null,
       productInventory: null
@@ -39,6 +39,7 @@ class App extends React.Component {
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
     this.getAnsweredQuestions = this.getAnsweredQuestions.bind(this);
+    this.getRating = this.getRating.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +69,8 @@ class App extends React.Component {
     this.getPrice(productId);
     //get the number of answered questions
     this.getAnsweredQuestions(productId);
+    //get rating
+    this.getRating(productId);
   }
 
   getPrice(id) {
@@ -100,6 +103,21 @@ class App extends React.Component {
       });
   }
 
+  getRating(id) {
+    let productId = id;
+    axios.get(`http://localhost:4006/Reviews/getReviews/${productId}`)
+      .then(response => {
+        let numOfRatings = response.data.length;
+        console.log(numOfRatings);
+        this.setState({
+          rating: numOfRatings
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   //handle color box click
   handleColorBoxClick (id) {
     //will make call to /description/${productId}
@@ -125,6 +143,7 @@ class App extends React.Component {
       });
     this.getPrice(productId);
     this.getAnsweredQuestions(productId);
+    this.getRating(productId);
   }
 
   render () {
@@ -146,7 +165,7 @@ class App extends React.Component {
           </HeadingBox>
           <RatingAndAnswersBox>
             <RatingBox>
-              <Rating numOfRating={this.state.ratings} />
+              <Rating numOfRating={this.state.rating} />
             </RatingBox>
             <AnswersBox>
               <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
