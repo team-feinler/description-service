@@ -59,6 +59,10 @@ class StarChart extends React.Component {
       border-radius: 5px;
     `;
 
+    const Bar = styled.div`
+    display: inline-block;
+  `;
+
     const Star5 = styled(StarBox)`
       background: linear-gradient(90deg, orange 0% ${this.state.star5}%, #D3D3D3  ${this.state.star5}% 100%);
     `;
@@ -74,18 +78,53 @@ class StarChart extends React.Component {
       background: linear-gradient(90deg, orange 0% ${this.state.star2}%, #D3D3D3 ${this.state.star2}% 100%);
     `;
     const Star1 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star1}%, #D3D3D3 ${this.state.star1}% 100%);
+      background: linear-gradient(90deg, orange 0% ${this.state.star1}%, #DCDCDC ${this.state.star1}% 100%);
+    `;
+
+    const BlueTxt = styled.h6`
+      color: #007185;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 16px;
+        &:hover {
+        color: #C7511F;
+        cursor: pointer;
+        }
+       margin: 1px;
+       display: inline-block;
     `;
 
     return (
       <div>
         <Chart>
-          star 5 <Star5></Star5>
-          <Star4></Star4>
-          <Star3></Star3>
-          <Star2></Star2>
-          <Star1></Star1>
+          <Bar>
+            <BlueTxt>5 star</BlueTxt>
+            <Star5></Star5>
+            <BlueTxt>{this.state.star5}%</BlueTxt>
+          </Bar>
+          <Bar>
+            <BlueTxt>4 star</BlueTxt>
+            <Star4></Star4>
+            <BlueTxt>{this.state.star4}%</BlueTxt>
+          </Bar>
+          <Bar>
+            <BlueTxt>3 star</BlueTxt>
+            <Star3></Star3>
+            <BlueTxt>{this.state.star3}%</BlueTxt>
+          </Bar>
+          <Bar>
+            <BlueTxt>2 star</BlueTxt>
+            <Star2></Star2>
+            <BlueTxt>{this.state.star2}%</BlueTxt>
+          </Bar>
+          <Bar>
+            <BlueTxt>1 star</BlueTxt>
+            <Star1></Star1>
+            <BlueTxt>{this.state.star1}%</BlueTxt>
+          </Bar>
         </Chart>
+        <br></br>
+
       </div>
     );
   }
