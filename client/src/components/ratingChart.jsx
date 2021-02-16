@@ -7,7 +7,6 @@ import axios from 'axios';
 class StarChart extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       star5: null,
       star4: null,
@@ -19,7 +18,7 @@ class StarChart extends React.Component {
   }
 
   componentDidMount () {
-    this.getStarRatings(1000);
+    this.getStarRatings(this.props.productId);
   }
 
   getStarRatings (id) {
@@ -37,18 +36,20 @@ class StarChart extends React.Component {
           star3: starThree,
           star2: starTwo,
           star1: starOne
-        });
+        })
+          .catch(err => {
+            console.log(err);
+          });
       });
   }
 
 
   render() {
-    console.log(100 - this.state.star4);
-
 
     const Chart = styled.div`
       display: flex;
       flex-direction: column;
+      border-bottom: 1px solid grey;
     `;
 
     const StarBox = styled.button`
@@ -79,6 +80,7 @@ class StarChart extends React.Component {
     `;
     const Star1 = styled(StarBox)`
       background: linear-gradient(90deg, orange 0% ${this.state.star1}%, #DCDCDC ${this.state.star1}% 100%);
+      margin-bottom: 20px;
     `;
 
     const BlueTxt = styled.h6`
@@ -124,7 +126,7 @@ class StarChart extends React.Component {
           </Bar>
         </Chart>
         <br></br>
-
+        <BlueTxt>See all customer reviews ></BlueTxt>
       </div>
     );
   }

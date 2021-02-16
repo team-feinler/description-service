@@ -31,7 +31,7 @@ const Rating = (props) => {
               <br></br>
               {props.numOfRating} global rating
             </div>
-            <StarChart></StarChart>
+            <StarChart productId={props.productId}></StarChart>
           </ReactTooltip>
         </div>
 

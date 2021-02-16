@@ -50,7 +50,6 @@ class App extends React.Component {
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
-        console.log(itemData);
         this.setState({
           productId: itemData.productId,
           itemDescription: itemData.itemDescription,
@@ -167,7 +166,7 @@ class App extends React.Component {
           </HeadingBox>
           <RatingAndAnswersBox>
             <RatingBox>
-              <Rating numOfRating={this.state.rating} starRating={this.state.starRating} />
+              <Rating numOfRating={this.state.rating} starRating={this.state.starRating} productId={this.state.productId} />
             </RatingBox>
             <AnswersBox>
               <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
