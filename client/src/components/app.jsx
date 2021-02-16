@@ -34,7 +34,8 @@ class App extends React.Component {
       rating: null,
       price: null,
       answeredQuestions: null,
-      productInventory: null
+      productInventory: null,
+      starRating: null
     };
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
@@ -105,12 +106,13 @@ class App extends React.Component {
 
   getRating(id) {
     let productId = id;
-    axios.get(`http://localhost:4006/Reviews/getReviews/${productId}`)
+    axios.get(`http://localhost:4006/Reviews/getReviewSummary/${productId}`)
       .then(response => {
-        let numOfRatings = response.data.length;
-        console.log(numOfRatings);
+        let numOfRatings = response.data.totalRatings;
+        let averageRating = response.data.averageRating;
         this.setState({
-          rating: numOfRatings
+          rating: numOfRatings,
+          starRating: averageRating
         });
       })
       .catch(err => {
@@ -165,7 +167,7 @@ class App extends React.Component {
           </HeadingBox>
           <RatingAndAnswersBox>
             <RatingBox>
-              <Rating numOfRating={this.state.rating} />
+              <Rating numOfRating={this.state.rating} starRating={this.state.starRating} />
             </RatingBox>
             <AnswersBox>
               <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
