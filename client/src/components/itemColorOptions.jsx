@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ColorOption from './colorOption.jsx';
 import { SectionDescriptionText } from '../style.js';
 import { ColorBoxBlack, ColorBoxGray, ColorBoxWhite } from '../style.js';
 
@@ -8,9 +7,6 @@ const ItemColorOptions = (props) => {
 
   const [color, setColor] = useState(props.color);
 
-  //handle box clicks which will take in productId and return productId
-
-  //pass productId up to app.jsx
   return (
     <div>
       <SectionDescriptionText>Color:</SectionDescriptionText> <b>{color}</b>
@@ -18,10 +14,6 @@ const ItemColorOptions = (props) => {
       <ColorBoxBlack onClick={() => props.handleColorBoxClick(props.similarItems[0])} onMouseEnter={() => setColor('Black')} onMouseLeave={() => setColor(props.color)}></ColorBoxBlack>
       <ColorBoxWhite onClick={() => props.handleColorBoxClick(props.similarItems[1])} onMouseEnter={() => setColor('White')} onMouseLeave={() => setColor(props.color)}></ColorBoxWhite>
       <ColorBoxGray onClick={() => props.handleColorBoxClick(props.similarItems[2])} onMouseEnter={() => setColor('Gray')} onMouseLeave={() => setColor(props.color)}></ColorBoxGray>
-      <div>
-        {props.similarItems.map(item => <ColorOption item={item} />
-        )}
-      </div>
     </div>
 
   );

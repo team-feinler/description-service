@@ -13,12 +13,14 @@ const Rating = (props) => {
     <div>
       <RatingBox>
         <div>
-          <span data-tip data-for='starChart'><StarRatings
-            starCount={5}
-            value={numOfStars}
-            starColor="#FFA500"
-          >
-          </StarRatings></span>
+          <span data-tip data-for='starChart'>
+            <StarRatings
+              starCount={5}
+              value={numOfStars}
+              starColor="#FFA500"
+            >
+            </StarRatings>
+          </span>
           <ReactTooltip id="starChart" place="bottom" effect="solid" multiline={true} backgroundColor="white" textColor='black' border={true} borderColor='black'>
             <div>
               <StarRatings
