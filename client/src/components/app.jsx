@@ -31,23 +31,25 @@ class App extends React.Component {
       itemName: null,
       isPrimeFreeOneDay: null,
       isFreeDelivery: null,
-      rating: 12233,
+      rating: null,
       price: null,
-      answeredQuestions: 457,
-      productInventory: null
+      answeredQuestions: null,
+      productInventory: null,
+      starRating: null
     };
     this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
     this.getPrice = this.getPrice.bind(this);
+    this.getAnsweredQuestions = this.getAnsweredQuestions.bind(this);
+    this.getRating = this.getRating.bind(this);
   }
 
   componentDidMount() {
     //render random item between 1000-1099
     let url = window.location.href;
     let productId = url.split('/')[3] || 1000;
-    axios.get(`/description/${productId}`)
+    axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
-        console.log(itemData);
         this.setState({
           productId: itemData.productId,
           itemDescription: itemData.itemDescription,
@@ -57,7 +59,7 @@ class App extends React.Component {
           itemConfiguration: itemData.configuration,
           itemName: itemData.itemName,
           isPrimeFreeOneDay: itemData.isPrimeFreeOneDay,
-          isFreeDelivery: itemData.isFreeDelivery,
+          isFreeDelivery: itemData.isFreeDelivery
         });
       })
       .catch((error) => {
@@ -65,6 +67,10 @@ class App extends React.Component {
       });
     //get the price of the product
     this.getPrice(productId);
+    //get the number of answered questions
+    this.getAnsweredQuestions(productId);
+    //get rating
+    this.getRating(productId);
   }
 
   getPrice(id) {
@@ -73,7 +79,6 @@ class App extends React.Component {
       .then((response) => {
         let itemPrice = response.data[0].price;
         let inventory = response.data[0].inventory;
-
         this.setState({
           price: itemPrice,
           productInventory: inventory
@@ -81,6 +86,36 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+      });
+  }
+
+  getAnsweredQuestions(id) {
+    let productId = id;
+    axios.get(`http://localhost:4001/customer-questions/${productId}`)
+      .then(res => {
+        let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
+        this.setState({
+          answeredQuestions: numberOfAnsweredQuestions
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getRating(id) {
+    let productId = id;
+    axios.get(`http://localhost:4006/Reviews/getReviewSummary/${productId}`)
+      .then(response => {
+        let numOfRatings = response.data.totalRatings;
+        let averageRating = response.data.averageRating;
+        this.setState({
+          rating: numOfRatings,
+          starRating: averageRating
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -108,6 +143,8 @@ class App extends React.Component {
           });
       });
     this.getPrice(productId);
+    this.getAnsweredQuestions(productId);
+    this.getRating(productId);
   }
 
   render () {
@@ -129,7 +166,7 @@ class App extends React.Component {
           </HeadingBox>
           <RatingAndAnswersBox>
             <RatingBox>
-              <Rating numOfRating={this.state.ratings} />
+              <Rating numOfRating={this.state.rating} starRating={this.state.starRating} productId={this.state.productId} />
             </RatingBox>
             <AnswersBox>
               <AnsweredQuestions numOfAnswers={this.state.answeredQuestions}/>
