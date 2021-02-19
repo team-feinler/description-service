@@ -47,7 +47,7 @@ class App extends React.Component {
     //render random item between 1000-1099
     let url = window.location.href;
     let productId = url.split('/')[3] || 1000;
-    axios.get(`http://localhost:4004/description/${productId}`)
+    axios.get(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         this.setState({
@@ -75,7 +75,7 @@ class App extends React.Component {
 
   getPrice(id) {
     let productId = id;
-    axios.get(`http://localhost:4003/priceandinventory/id/${productId}`)
+    axios.get(`http://ec2-3-15-169-97.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`)
       .then((response) => {
         let itemPrice = response.data[0].price;
         let inventory = response.data[0].inventory;
@@ -91,7 +91,7 @@ class App extends React.Component {
 
   getAnsweredQuestions(id) {
     let productId = id;
-    axios.get(`http://localhost:4001/customer-questions/${productId}`)
+    axios.get(`http://ec2-3-22-93-125.us-east-2.compute.amazonaws.com:4001/customerQuestions/${productId}`)
       .then(res => {
         let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
         this.setState({
@@ -105,7 +105,7 @@ class App extends React.Component {
 
   getRating(id) {
     let productId = id;
-    axios.get(`http://localhost:4006/Reviews/getReviewSummary/${productId}`)
+    axios.get(`http://ec2-174-129-73-213.compute-1.amazonaws.com:4006/Reviews/getReviewSummary${productId}`)
       .then(response => {
         let numOfRatings = response.data.totalRatings;
         let averageRating = response.data.averageRating;
