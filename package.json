@@ -9,6 +9,7 @@
   },
   "scripts": {
     "react-dev": "webpack --mode=development --watch",
+    "build": "webpack --config webpack.config.js",
     "server-dev": "nodemon server/server.js",
     "seed": "node database/seeding.js",
     "test": "jest --detectOpenHandles --passWithNoTests --runInBand --updateSnapshot"
