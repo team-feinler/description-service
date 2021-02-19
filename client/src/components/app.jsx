@@ -123,7 +123,7 @@ class App extends React.Component {
   handleColorBoxClick (id) {
     //will make call to /description/${productId}
     let productId = id;
-    axios.get(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/${productId}`)
+    axios.get(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`)
       .then((response) => {
         let itemData = response.data[0];
         window.location = `/${itemData.productId}`;
