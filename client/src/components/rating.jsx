@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BlueText, ClimatePledgeFriendlyText, RatingText, Image, RatingBox} from '../style.js';
+import { BlueText, ClimatePledgeFriendlyText, RatingText, Image, RatingBox, Link} from '../style.js';
 import StarRatings from 'react-star-rating-component';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
@@ -36,8 +36,9 @@ const Rating = (props) => {
             <StarChart productId={props.productId}></StarChart>
           </ReactTooltip>
         </div>
-
-        <RatingText> {props.numOfRating} ratings </RatingText>
+        <Link href="#CustomerReviews">
+          <RatingText> {props.numOfRating} ratings </RatingText>
+        </Link>
       </RatingBox>
       <ClimatePledgeFriendlyText>
         <img style={{height: '22px', width: '22px'}} src="https://freedesignfile.com/upload/2016/06/Globe-with-tree-logos-vector-design-02.jpg"></img>

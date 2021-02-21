@@ -201,9 +201,74 @@ const PriceSavedText = styled(PriceText)`
   color: #B12704;
 `;
 
+const Chart = styled.div`
+display: flex;
+flex-direction: column;
+border-bottom: 1px solid grey;
+`;
+
+const StarBox = styled.button`
+width: 180px;
+height: 20px;
+margin: 5px;
+line-height: 5px;
+border-radius: 5px;
+`;
+
+const Bar = styled.div`
+display: inline-block;
+`;
+
+const Star5 = styled(StarBox)`
+background: linear-gradient(90deg, orange 0% 45%, #D3D3D3  45% 100%);
+`;
+
+const Star4 = styled(StarBox)`
+background: linear-gradient(90deg, orange 0% 36%, #D3D3D3 36% 100%);
+`;
+
+const Star3 = styled(StarBox)`
+background: linear-gradient(90deg, orange 0% 18%, #D3D3D3 18% 100%);
+`;
+
+const Star2 = styled(StarBox)`
+background: linear-gradient(90deg, orange 0%, #D3D3D3 0% 100%);
+`;
+
+const Star1 = styled(StarBox)`
+background: linear-gradient(90deg, orange 0%, #DCDCDC 0% 100%);
+margin-bottom: 20px;
+`;
+
+const BlueTxt = styled.h6`
+color: #007185;
+font-family: Arial, sans-serif;
+font-size: 14px;
+line-height: 16px;
+  &:hover {
+  color: #C7511F;
+  cursor: pointer;
+  }
+ margin: 1px;
+ display: inline-block;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+`;
 
 
 export {
+  Link,
+  Bar,
+  Chart,
+  StarBox,
+  Star5,
+  Star4,
+  Star3,
+  Star2,
+  Star1,
+  BlueTxt,
   Image,
   FirstConfigBox,
   PriceSavedText,

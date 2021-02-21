@@ -2,6 +2,7 @@ import Rating from './rating.jsx';
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import {Chart, Bar, StarBox, Star5, Star4, Star3, Star2, Star1, BlueTxt} from '../style.js';
 
 
 class StarChart extends React.Component {
@@ -23,7 +24,7 @@ class StarChart extends React.Component {
 
   getStarRatings (id) {
     let productId = id;
-    axios.get(`http://localhost:4006/Reviews/getReviewSummary/${productId}`)
+    axios.get(`http://ec2-174-129-73-213.compute-1.amazonaws.com:4006/Reviews/getReviewSummary/${productId}`)
       .then((response) => {
         let starFive = parseInt(response.data.fiveStar.slice(0, response.data.fiveStar.length - 1));
         let starFour = parseInt(response.data.fourStar.slice(0, response.data.fourStar.length - 1));
@@ -45,56 +46,6 @@ class StarChart extends React.Component {
 
 
   render() {
-
-    const Chart = styled.div`
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid grey;
-    `;
-
-    const StarBox = styled.button`
-      width: 180px;
-      height: 20px;
-      margin: 5px;
-      line-height: 5px;
-      border-radius: 5px;
-    `;
-
-    const Bar = styled.div`
-    display: inline-block;
-  `;
-
-    const Star5 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star5}%, #D3D3D3  ${this.state.star5}% 100%);
-    `;
-
-    const Star4 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star4}%, #D3D3D3 ${this.state.star4}% 100%);
-    `;
-    const Star3 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star3}%, #D3D3D3 ${this.state.star3}% 100%);
-    `;
-
-    const Star2 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star2}%, #D3D3D3 ${this.state.star2}% 100%);
-    `;
-    const Star1 = styled(StarBox)`
-      background: linear-gradient(90deg, orange 0% ${this.state.star1}%, #DCDCDC ${this.state.star1}% 100%);
-      margin-bottom: 20px;
-    `;
-
-    const BlueTxt = styled.h6`
-      color: #007185;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      line-height: 16px;
-        &:hover {
-        color: #C7511F;
-        cursor: pointer;
-        }
-       margin: 1px;
-       display: inline-block;
-    `;
 
     return (
       <div>
