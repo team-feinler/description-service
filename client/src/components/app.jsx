@@ -75,7 +75,9 @@ class App extends React.Component {
 
   getPrice(id) {
     let productId = id;
+
     axios.get(`http://ec2-3-141-67-137.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`)
+
       .then((response) => {
         let itemPrice = response.data[0].price;
         let inventory = response.data[0].inventory;
@@ -91,7 +93,9 @@ class App extends React.Component {
 
   getAnsweredQuestions(id) {
     let productId = id;
+
     axios.get(` http://ec2-3-22-93-125.us-east-2.compute.amazonaws.com:4001/customer-questions/${productId}`)
+
       .then(res => {
         let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
         this.setState({
@@ -106,6 +110,7 @@ class App extends React.Component {
   getRating(id) {
     let productId = id;
     axios.get(`http://ec2-174-129-73-213.compute-1.amazonaws.com:4006/Reviews/getReviewSummary/${productId}`)
+
       .then(response => {
         let numOfRatings = response.data.totalRatings;
         let averageRating = response.data.averageRating;
