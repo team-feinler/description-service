@@ -1,6 +1,4 @@
 const CompressionPlugin = require('compression-webpack-plugin');
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = {
@@ -13,7 +11,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [{modules: false}, '@babel/preset-env', '@babel/preset-react']
+            presets: [ '@babel/preset-env', '@babel/preset-react']
           },
         }
       }
@@ -31,9 +29,5 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new UglifyJSPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE': JSON.stringify('production')
-    })
   ]
 };

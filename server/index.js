@@ -1,4 +1,5 @@
 const express = require('express');
+
 const db = require('../database/database.js');
 const seeder = require('../database/seeding.js');
 const bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
+
 
 app.get('*.js', function(req, res, next) {
   req.url = req.url + '.gz';
