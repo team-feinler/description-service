@@ -22,8 +22,11 @@ app.use(cors());
 
 
 app.get('*.js', function(req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
+  if (req.header('Accept-Encoding').includes('br')) {
+    req.url = req.url + '.br';
+    res.set('Content-Encoding', 'br');
+    res.set('Content-Type', 'application/javascript; charset=UTF-8');
+  }
   next();
 });
 
