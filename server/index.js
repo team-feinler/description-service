@@ -13,19 +13,25 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 
+app.get('*.js', function(req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  // res.set('Content-Type', 'text/javascript');
+  next();
+});
+
 app.use(express.static(__dirname + '/../public'));
 app.use('/:id', express.static(__dirname + '/../public'));
 
 
 //get one item's description
-app.get('/description/:productId', cors(corsOptions), (req, res, next) => {
+app.get('/description/:productId', (req, res, next) => {
   let productId = req.params.productId;
   query.getDescriptionForOneProduct(productId, (err, description) => {
     if (description.length === 0) {

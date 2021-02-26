@@ -9,11 +9,10 @@ import ItemDescription from './itemDescription.jsx';
 import ItemPriceDetails from './itemPriceDetails.jsx';
 import Rating from './rating.jsx';
 import Price from './itemPriceDetails.jsx';
-import exampleData from '../exampleData.js';
 import { Wrapper } from '../style.js';
 import { DescriptionContainer } from '../style.js';
 import { HeadingBox, RatingAndAnswersBox, PriceBox, ColorOptionBox, ConfigOptionBox, DescriptionBox, RatingBox, AnswersBox } from '../style.js';
-import {Route} from 'react-router-dom';
+
 
 
 
