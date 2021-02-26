@@ -12,7 +12,7 @@
     "build": "webpack --config webpack.config.js",
     "server-dev": "nodemon server/server.js",
     "seed": "node database/seeding.js",
-    "test": "jest --detectOpenHandles --passWithNoTests --runInBand --updateSnapshot"
+    "test": "jest --detectOpenHandles --passWithNoTests --runInBand --updateSnapshot --forceExit"
   },
   "dependencies": {
     "axios": "^0.21.1",

@@ -2,9 +2,14 @@
 
 exports[`Components Should Render AnsweredQuestions component should render correctly 1`] = `
 <div>
-  <style__BlueText>
-    | 457 answered questions
-  </style__BlueText>
+  <style__Link
+    href="CustomerQuestions"
+  >
+    <style__BlueText>
+      | 
+       answered questions
+    </style__BlueText>
+  </style__Link>
 </div>
 `;
 
@@ -21,8 +26,6 @@ exports[`Components Should Render App component should render correctly onto the
   </div>
 </div>
 `;
-
-exports[`Components Should Render ColorOption component should render correctly 1`] = `<div />`;
 
 exports[`Components Should Render ConfigurationOption component should render correctly 1`] = `<style__ConfigBox />`;
 
@@ -84,9 +87,9 @@ exports[`Components Should Render ItemPriceDetails component should render corre
   <div>
     FREE Delivery 
     <b>
-      Feb 11th
+      Feb 26th
        - 
-      Feb 16th
+      Mar 3rd
     </b>
      for Prime members
   </div>
@@ -106,23 +109,14 @@ exports[`Components Should Render Rating component should render correctly 1`] =
   <style__RatingBox>
     <div>
       <span
-        data-for="test"
+        data-for="starChart"
         data-tip={true}
       >
-        <StarRatings
-          changeRating={null}
-          gradientPathName=""
-          ignoreInlineStyles={false}
-          numberOfStars={5}
-          rating={5}
-          starDimension="15px"
-          starEmptyColor="white"
-          starHoverColor="rgb(230, 67, 47)"
-          starRatedColor="orange"
-          starSpacing="1px"
-          svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
-          svgIconViewBox="0 0 51 48"
-          typeOfWidget="Star"
+        <StarRatingComponent
+          editing={true}
+          emptyStarColor="#333"
+          starColor="#FFA500"
+          starCount={5}
         />
       </span>
       <ReactTooltip
@@ -131,7 +125,7 @@ exports[`Components Should Render Rating component should render correctly 1`] =
         borderColor="black"
         clickable={false}
         effect="solid"
-        id="test"
+        id="starChart"
         insecure={true}
         multiline={true}
         place="bottom"
@@ -140,33 +134,27 @@ exports[`Components Should Render Rating component should render correctly 1`] =
         wrapper="div"
       >
         <div>
-          <StarRatings
-            changeRating={null}
-            gradientPathName=""
-            ignoreInlineStyles={false}
-            numberOfStars={5}
-            rating={5}
-            starDimension="15px"
-            starEmptyColor="white"
-            starHoverColor="rgb(230, 67, 47)"
-            starRatedColor="orange"
-            starSpacing="1px"
-            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
-            svgIconViewBox="0 0 51 48"
-            typeOfWidget="Star"
+          <StarRatingComponent
+            editing={true}
+            emptyStarColor="#333"
+            starColor="#FFA500"
+            starCount={5}
           />
-          4.7 out of 5
+           out of 5
           <br />
-          12347 global rating
+           global rating
         </div>
-        <Chart
-          test="Hello"
-        />
+        <StarChart />
       </ReactTooltip>
     </div>
-    <style__RatingText>
-       12347 ratings 
-    </style__RatingText>
+    <style__Link
+      href="#CustomerReviews"
+    >
+      <style__RatingText>
+         
+         ratings 
+      </style__RatingText>
+    </style__Link>
   </style__RatingBox>
   <style__ClimatePledgeFriendlyText>
     <img
