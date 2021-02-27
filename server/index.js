@@ -1,4 +1,5 @@
 const express = require('express');
+
 const db = require('../database/database.js');
 const seeder = require('../database/seeding.js');
 const bodyParser = require('body-parser');
@@ -13,19 +14,28 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 
+
+app.get('*.js', function(req, res, next) {
+  if (req.header('Accept-Encoding').includes('br')) {
+    req.url = req.url + '.br';
+    res.set('Content-Encoding', 'br');
+    res.set('Content-Type', 'application/javascript; charset=UTF-8');
+  }
+  next();
+});
+
 app.use(express.static(__dirname + '/../public'));
 app.use('/:id', express.static(__dirname + '/../public'));
 
 
 //get one item's description
-app.get('/description/:productId', cors(corsOptions), (req, res, next) => {
+app.get('/description/:productId', (req, res, next) => {
   let productId = req.params.productId;
   query.getDescriptionForOneProduct(productId, (err, description) => {
     if (description.length === 0) {

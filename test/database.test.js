@@ -34,10 +34,7 @@ describe('DATABASE', () => {
     console.log(err);
   })
   mongoose.connection
-    .on('error', console.error.bind(console, 'connection error:'))
-    .once('open', function () {
-      console.log('CONNECTED TO MONGO FOR TESTING');
-    });
+    .on('error', console.error.bind(console, 'connection error:'));
 
     beforeEach((done) => {
       db.collections.descriptions.drop(() => {
@@ -47,20 +44,15 @@ describe('DATABASE', () => {
 
   afterEach(async ()=> {
     await Description.deleteOne({productId: 900});
+    done();
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
+    mongoose.connection.close();
+    done();
   });
 
-  test('should insert a record into the database', (done) => {
-    const item = new Description({productId: 900});
-    item.save()
-      .then(() => {
-        assert(!item.isNew);
-        done();
-      });
-  });
+
 
 
 });
