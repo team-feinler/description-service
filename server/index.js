@@ -1,27 +1,19 @@
 const express = require('express');
-
 const db = require('../database/database.js');
 const bodyParser = require('body-parser');
-const query = require('../database/query.js');
 const cors = require('cors');
 const morgan = require('morgan');
-require("dotenv").config();
-
-const controllers = require('./controllers/mongo.js');
+const { descriptionById, descriptionByBatch } = require('./controllers/mongo.js')
 
 const app = express();
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
-};
 
-
+//setup middlewares
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 
-
+// setup up static requests
 app.get('*.js', function(req, res, next) {
   if (req.header('Accept-Encoding').includes('br')) {
     req.url = req.url + '.br';
@@ -30,16 +22,23 @@ app.get('*.js', function(req, res, next) {
   }
   next();
 });
-
 app.use(express.static(__dirname + '/../public'));
 app.use('/:id', express.static(__dirname + '/../public'));
 
-const { descriptionById, descriptionByBatch } = controllers
+
+// handle endpoints
 
 //get one item's description
-app.get('/description/:productId', descriptionById);
+app.route('/description/:productId')
+  .get(descriptionById)
+  .put((req, res) => res.json('put works'))
+  .delete((req, res) => res.json('delete works'));
+
+app.route('/description/new')
+  .post((req, res) => res.json('post works'));
 
 //get multiple item descriptions
 app.get('/descriptions/multiple', descriptionByBatch);
+
 
 module.exports = app;
