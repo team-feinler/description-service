@@ -1,7 +1,6 @@
 const express = require('express');
 
 const db = require('../database/database.js');
-const seeder = require('../database/seeding.js');
 const bodyParser = require('body-parser');
 const query = require('../database/query.js');
 const cors = require('cors');
