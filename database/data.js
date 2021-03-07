@@ -118,7 +118,7 @@ var getAvailableColors = (id, color) => {
 };
 
 //Generate data function
-var generateData = () => {
+var generateData = (start = 1, end = 100) => {
   //returns an array of 100 different items of data
   //DATA of 100 different items
   var data = [];
@@ -134,7 +134,7 @@ var generateData = () => {
   var description = null;
   var configuration = null;
   //loop through numbers starting at 1000 to 1100
-  for (var i = 1000; i < 1100; i++) {
+  for (var i = start; i <= end; i++) {
     var newItemObject = {};
     newItemObject.productId = i;
     //set property "color" of either black, white, gray in that order
@@ -164,8 +164,8 @@ var generateData = () => {
       nameCount++;
     }
 
-    if (i === 1099) {
-      newItemObject.similarItems = [1099, 1097, 1098];
+    if (i === 99) {
+      newItemObject.similarItems = [99, 97, 98];
     }
     newItemObject.similarItems = getAvailableColors(i, colorOptions[colorIndex]);
     //if colorIndex = 2 then reset to 0

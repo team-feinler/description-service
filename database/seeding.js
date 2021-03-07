@@ -11,5 +11,8 @@ Description.count({}, function(err, count) {
       .then(() => console.log('DATA SUCCESSFULLY SEEDED'))
       .catch((err) => console.log('ERROR SEEDING DATA', err))
       .finally(() => mongoose.connection.close());
+  } else {
+    console.log('Data already exists')
+    process.exit();
   }
 });
