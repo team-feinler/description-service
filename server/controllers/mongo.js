@@ -1,6 +1,6 @@
 const query = require('../../database/query.js');
 const Description = require('../../database/database.js');
-const generateData = require('../../database/data.js');
+const { generateData } = require('../../database/data.js');
 
 // GET @ /description/:productId
 exports.descriptionById = (req, res, next) => {
