@@ -1,4 +1,4 @@
-const generateData = require('./data.js');
+const { generateData } = require('./data.js');
 const mongoose = require('mongoose');
 const Description = require('./database.js');
 
