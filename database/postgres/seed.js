@@ -12,6 +12,7 @@ const {
   configurationsTable, 
   similarItemsTable,
   dropTables,
+  addForeignKeys,
   pgRecord
 } = require('./queries.js');
 
@@ -63,29 +64,30 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
       // when counter reaches batch size insert rows and clear buffers
       counter++;
       if (counter === batchSize || (i === numOfRecords && counter !== 0)) {
-        const items = format('INSERT INTO similarItems (id, similarItems) VALUES %L', itemsBuffer);
+        const items = format('INSERT INTO similarItems (id, product, similarItems) VALUES %L', itemsBuffer);
         await client.query(items);
         itemsBuffer = [];
 
-        const descriptions = format('INSERT INTO descriptions(id, itemDescription) VALUES %L', descriptionBuffer);
+        const descriptions = format('INSERT INTO descriptions(id, product, itemDescription) VALUES %L', descriptionBuffer);
         await client.query(descriptions);
         descriptionBuffer = [];
 
-        const info = format('INSERT INTO info(id, itemColor, brand, isPrimeFreeOneDay, isFreeDelivery) VALUES %L', infoBuffer);
+        const info = format('INSERT INTO info(id, product, itemColor, brand, isPrimeFreeOneDay, isFreeDelivery) VALUES %L', infoBuffer);
         await client.query(info);
         infoBuffer = [];
 
-        const configuration = format('INSERT INTO configurations(id, configuration) VALUES %L', configurationBuffer);
+        const configuration = format('INSERT INTO configurations(id, product, configuration) VALUES %L', configurationBuffer);
         await client.query(configuration);
         configurationBuffer = [];
 
-        const product = format('INSERT INTO products(id, itemName) VALUES %L', productBuffer);
+        const product = format('INSERT INTO products(id, description, info, configuration, similarItems) VALUES %L', productBuffer);
         await client.query(product);
         productBuffer = [];
 
         counter = 0;
       }
     }
+    await client.query(addForeignKeys);
     await client.query('COMMIT');
     console.log((Date.now() - timestamp) / 1000);
     await disconnect();    
@@ -95,4 +97,4 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
   }
 }
 
-seed(100000, 1000);
+seed(1000000, 1000);
