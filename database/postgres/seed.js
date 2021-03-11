@@ -96,4 +96,4 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
   }
 }
 
-seed(100000, 700);
+seed(100000, 1000);
