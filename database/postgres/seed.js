@@ -83,7 +83,6 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
         const product = format('INSERT INTO products(id, description, info, configuration, similarItems) VALUES %L', productBuffer);
         await client.query(product);
         productBuffer = [];
-
         counter = 0;
       }
     }
@@ -97,4 +96,4 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
   }
 }
 
-seed(1000000, 1000);
+seed(100000, 700);
