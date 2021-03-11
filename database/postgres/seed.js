@@ -48,6 +48,7 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
     let configurationBuffer = [];
     let productBuffer = [];
     let counter = 0;
+    await client.query('BEGIN');
     for(let i = 1; i <= numOfRecords; i++) {
       // get values from record converter
       let { similarItemsValues, descriptionValues, productValues, infoValues, configurationValues } = pgRecord(i);
@@ -70,7 +71,7 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
         await client.query(descriptions);
         descriptionBuffer = [];
 
-        const info = format('INSERT INTO info(id, itemColor, brand, isPrimeFreeOneDay, isFreeDelivery) VALUES %L', infoBuffer)
+        const info = format('INSERT INTO info(id, itemColor, brand, isPrimeFreeOneDay, isFreeDelivery) VALUES %L', infoBuffer);
         await client.query(info);
         infoBuffer = [];
 
@@ -78,14 +79,15 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
         await client.query(configuration);
         configurationBuffer = [];
 
-        const product = format('INSERT INTO products(id, itemName) VALUES %L', productBuffer)
+        const product = format('INSERT INTO products(id, itemName) VALUES %L', productBuffer);
         await client.query(product);
         productBuffer = [];
 
         counter = 0;
       }
     }
-    console.log((Date.now() - timestamp) / 1000)
+    await client.query('COMMIT');
+    console.log((Date.now() - timestamp) / 1000);
     await disconnect();    
   } catch (error) {
     console.log(error)
@@ -93,4 +95,4 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
   }
 }
 
-seed(1000000, 1000);
+seed(100000, 1000);
