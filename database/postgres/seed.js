@@ -49,6 +49,7 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
     let configurationBuffer = [];
     let productBuffer = [];
     let counter = 0;
+    // open a single transaction to avoid commits
     await client.query('BEGIN');
     for(let i = 1; i <= numOfRecords; i++) {
       // get values from record converter
@@ -61,9 +62,10 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
       configurationBuffer.push(configurationValues);
       productBuffer.push(productValues);
 
-      // when counter reaches batch size insert rows and clear buffers
       counter++;
+      // when counter reaches batch size insert rows and clear buffers
       if (counter === batchSize || (i === numOfRecords && counter !== 0)) {
+        // use pg-format to make write a batch insert, query it and empty buffers
         const items = format('INSERT INTO similarItems (id, product, similarItems) VALUES %L', itemsBuffer);
         await client.query(items);
         itemsBuffer = [];
@@ -86,7 +88,9 @@ const seed = async (numOfRecords = 1000, batchSize = 1000) => {
         counter = 0;
       }
     }
+    // build foreign key index
     await client.query(addForeignKeys);
+    // close commit
     await client.query('COMMIT');
     console.log((Date.now() - timestamp) / 1000);
     await disconnect();    
