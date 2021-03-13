@@ -1,4 +1,5 @@
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+const md5 = require('md5')
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -136,7 +137,7 @@ var generateData = (start = 1, end = 100) => {
   //loop through numbers starting at 1000 to 1100
   for (var i = start; i <= end; i++) {
     var newItemObject = {};
-    newItemObject.productId = i;
+    newItemObject.id = i;
     //set property "color" of either black, white, gray in that order
     newItemObject.itemColor = colorOptions[colorIndex];
     newItemObject.configuration = createConfiguration();
@@ -185,6 +186,8 @@ var generateData = (start = 1, end = 100) => {
   return data;
 };
 
-module.exports = generateData;
+module.exports = {
+  generateData
+};
 
 
