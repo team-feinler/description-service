@@ -5,6 +5,12 @@ const DESCRIPTION = 'description';
 const INFO = 'info';
 const SIMILARITEMS = 'similarItems';
 const CONFIGURATION = 'configuration';
+//export for use in later inserts
+exports.DESCRIPTION = DESCRIPTION;
+exports.INFO = INFO;
+exports.SIMILARITEMS = SIMILARITEMS;
+exports.CONFIGURATION = CONFIGURATION;
+
 
 // configure objects for bulk insert
 /**
