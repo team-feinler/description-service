@@ -3,7 +3,10 @@ require('../database/database.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const { descriptionById, descriptionByBatch, newDescription, genData, updateDescription, genUpdate, deleteDescription } = require('./controllers/mongo.js')
+const { descriptionById, descriptionByBatch, newDescription, genData, updateDescription, genUpdate, deleteDescription } = require('./controllers/mongo.js');
+
+const { getProduct } = require('./controllers/postgres.js');
+const { errorHandler, hashParam } = require('./controllers/utils.js');
 
 const app = express();
 
@@ -26,18 +29,20 @@ app.use(express.static(__dirname + '/../public'));
 app.use('/:id', express.static(__dirname + '/../public'));
 
 
-// handle endpoints
-
-//get one item's description
+// hash param and add to req
+// RUD controllers
+app.use('/description/:productId', hashParam);
 app.route('/description/:productId')
-  .get(descriptionById)
+  .get(getProduct)
   .put(genUpdate, updateDescription)
   .delete(deleteDescription);
 
+// C controller
 app.route('/description/new')
   .post(genData, newDescription);
 
 //get multiple item descriptions
 app.get('/descriptions/multiple', descriptionByBatch);
+app.use(errorHandler);
 
 module.exports = app;
