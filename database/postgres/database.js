@@ -26,40 +26,75 @@ const getProductQuery = (productId) =>  `
 `;
 
 // build out query templates for CUD
-const updateQuery = ({table, columns, values, id}) => `
+// reusable update table template
+// stings must 
+const updateQuery = ({table = '', columns = [], values = [], id = ''}) => `
   update ${table}
     set
     ${columns.map((col, i) => {
       return `${col}='${values[i]}'`;
     })}
-  where id='${id}'
+  where id='${id}';
 `;
 
+// reusable insert query
 // const insertQuery 
 
 const queriesTypes = {
   update: updateQuery
 }
 
-const combineUpdates = (type, ...queries) => `
-  BEGIN
+// aggragate all queries into a single string with the appropriate syntax
+// use begin and commit to lump into single transaction to ensure integrity
+// works for all update, delete, insert
+const combineQueries = (type, ...queries) => `
+  BEGIN;
     ${queries.map(query => queriesTypes[type](query)).join('\n')}
   COMMIT;
 `;
 
-const q = combineUpdates(
-  'update',
-  {table:'info', 
-  columns: ['brand', 'itemColor'], 
-  values: ['a', 'b'], 
-  id: '22b8837fc929b21ef4551e1ffa72f485'}
-  )//, {table:'test2', columns: ['col', 'test'], values: ['a', 'c'], id: 10})
-console.log(q)
-
+// get single product description by id
 exports.getProduct = async (productId) => {
   const q = getProductQuery(productId);
   console.log(q);
   const { rows } = await client.query(q);
   return rows[0];
 };
+
+exports.updateProduct = async (...queries) => {
+  const query = combineQueries('update', ...queries);
+  return client.query(query);
+}
+
+
+
+// for quick debugging purposes
+const queries = [
+  {
+    table:'info', 
+    columns: ['brand', 'itemColor'], 
+    values: ['a test', 'b'], 
+    id: '22b8837fc929b21ef4551e1ffa72f485'
+  },
+  {
+    table:'descriptions', 
+    columns: ['itemDescription'], 
+    values: [`${JSON.stringify(['a test', 'c'])}`], 
+    id: '748a9d8335d2e7d78f8736bd14d4fc65'
+  },
+  {
+    table: 'configurations',
+    columns: ['configuration'],
+    values: [`${JSON.stringify(['configuration test'])}`],
+    id: 'fdf9fcc9c64602ce07972a2673d2eefc'
+  },
+  {
+    table: 'similarItems',
+    columns: ['similarItems'],
+    values: [`${JSON.stringify([' similar item test'])}`],
+    id: '116e28d6472ac75f0fc045e5f39e15f5'
+  }
+]
+
+// exports.updateProduct(...queries).then(res => console.log(res));
 
