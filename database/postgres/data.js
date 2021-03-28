@@ -193,4 +193,3 @@ exports.randomDoc = (index) => {
     ...info
   }
 };
-console.log(exports.randomDoc(100));
