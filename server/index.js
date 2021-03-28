@@ -3,9 +3,9 @@ require('../database/database.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const { descriptionById, descriptionByBatch, newDescription, genData, updateDescription, genUpdate, deleteDescription } = require('./controllers/mongo.js');
+const { descriptionById, descriptionByBatch, newDescription, genData, deleteDescription } = require('./controllers/mongo.js');
 
-const { getProduct } = require('./controllers/postgres.js');
+const { getProduct, updateProduct, genUpdate } = require('./controllers/postgres.js');
 const { errorHandler, hashParam } = require('./controllers/utils.js');
 
 const app = express();
@@ -34,7 +34,7 @@ app.use('/:id', express.static(__dirname + '/../public'));
 app.use('/description/:productId', hashParam);
 app.route('/description/:productId')
   .get(getProduct)
-  .put(genUpdate, updateDescription)
+  .put(genUpdate, updateProduct)
   .delete(deleteDescription);
 
 // C controller
