@@ -10,7 +10,7 @@ exports.errorHandler = (err, req, res, next) => {
   res.status(status).json({status, message});
 };
 
-// make custom error that can take message, status, and function from which it is thrown as args
+// make custom error that can take message, status, and function from which it is thrown as args 
 exports.ErrAPI = class ErrAPI extends Error {
   constructor(message = 'Server error', status = 500, origin = "server") {
     super(message);
