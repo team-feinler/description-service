@@ -2,13 +2,13 @@ const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '../', '../', '.env')});
 const { Client } = require('pg');
 const client = new Client();
-const md5 = require('md5');
 
 client.connect();
 
 // get single product
 const getProductQuery = (productId) =>  `
   select 
+    products.id,
     configurations.configuration,
     descriptions.itemDescription,
     info.itemName,
@@ -25,6 +25,17 @@ const getProductQuery = (productId) =>  `
   where products.id = '${productId}';
 `;
 
+// get foreign keys from product table
+const getProductKeys = (productId) => `
+  SELECT 
+    products.configuration,
+    products.info,
+    products.description,
+    products.similarItems
+  from products
+  where products.id = '${productId}';
+`;
+
 // build out query templates for CUD
 // reusable update table template
 // arrays passed as values must be stringified, where is pair of prop='val'
@@ -38,7 +49,8 @@ const updateQuery = ({table = '', columns = [], values = [], where = [['prop', '
 `;
 
 // reusable insert query
-const insertQuery = ({table = '', columns = [], values = [], id = ''}) => `
+// columns must be in same order as values
+const insertQuery = ({table = '', columns = [], values = []}) => `
   INSERT INTO ${table}
     (${columns.join(',')})
   VALUES(${values.map(val => `'${val}'`).join(',')});
@@ -51,13 +63,14 @@ const deleteQuery = ({table = '', where = [['prop', 'val']]}) => `
   WHERE ${where.map(tup => `${tup[0]}='${tup[1]}'`).join(' AND ')};
 `;
 
+// store different templates to be indexed later
 const queriesTypes = {
   update: updateQuery,
   insert: insertQuery,
   delete: deleteQuery
 };
 
-// aggragate all queries into a single string with the appropriate syntax
+// process all queries through template designated by the arg type
 // use begin and commit to lump into single transaction to ensure integrity
 // works for update, delete, insert
 const combineQueries = (type, ...queries) => `
@@ -66,18 +79,22 @@ const combineQueries = (type, ...queries) => `
   COMMIT;
 `;
 
+// get keys from a product
+exports.getKeys = async (productId) => {
+  return client.query(getProductKeys(productId));
+}
+
 // get single product description by id
 exports.getProduct = async (productId) => {
   const q = getProductQuery(productId);
-  console.log(q);
   const { rows } = await client.query(q);
   return rows[0];
 };
 
 // for use in controller, take query objects, combine and resolve
 exports.updateProduct = async (...queries) => {
-  const query = combineQueries('update', ...queries);
-  return client.query(query);
+  const q = combineQueries('update', ...queries);
+  return client.query(q);
 };
 
 // for use in controller
@@ -86,7 +103,15 @@ exports.insertProduct = async(...queries) => {
   return client.query(query);
 };
 
-// quick example and testing below
+exports.deleteProduct = async (...queries) => {
+  const q = combineQueries('delete', ...queries);
+  return client.query(q);
+};
+
+
+
+
+// ************************ example and testing below
 const queries = [
   {
     table:'info', 
