@@ -136,7 +136,7 @@ exports.similarItems = {
     ].join(',');
   }
 }
-
+// data generators that will be used in middleware for randomizing updates and inserts
 const genItems = (index, total = 10000000) => {
   let limit = Math.floor(Math.random() * 5);
   let items = [];
