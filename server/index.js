@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { descriptionById, descriptionByBatch, newDescription, genData, deleteDescription } = require('./controllers/mongo.js');
 
-const { getProduct, updateProduct, genUpdate } = require('./controllers/postgres.js');
+const { getProduct, updateProduct, genUpdate, insertProduct, genInsert } = require('./controllers/postgres.js');
 const { errorHandler, hashParam } = require('./controllers/utils.js');
 
 const app = express();
@@ -38,8 +38,8 @@ app.route('/description/:productId')
   .delete(deleteDescription);
 
 // C controller
-app.route('/description/new')
-  .post(genData, newDescription);
+app.route('/descriptions/new')
+  .post(genInsert, insertProduct);
 
 //get multiple item descriptions
 app.get('/descriptions/multiple', descriptionByBatch);
