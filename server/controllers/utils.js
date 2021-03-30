@@ -1,4 +1,6 @@
 const md5 = require('md5');
+const { DESCRIPTION, INFO, SIMILARITEMS, CONFIGURATION } = require('../../database/postgres/data.js');
+
 
 // async handler that wraps promise with catch block around a function, passes error into next to be handled by error route
 exports.asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req,res,next)).catch(next);
@@ -33,3 +35,11 @@ exports.hashParam = asyncHandler((req, res, next) => {
     next();
   }
 });
+
+exports.generateIds = (index) => {
+  const descriptionId = md5(index + DESCRIPTION);
+  const infoId = md5(index + INFO);
+  const configId = md5(index + CONFIGURATION);
+  const itemsId = md5(index + SIMILARITEMS);
+  return [descriptionId, infoId, configId, itemsId];
+}
