@@ -6,7 +6,7 @@ const client = new Client();
 client.connect();
 
 // get single product
-const getProductQuery = (productId) =>  `
+const getProductQuery = (productIds) =>  `
   select 
     products.id,
     configurations.configuration,
@@ -22,7 +22,11 @@ const getProductQuery = (productId) =>  `
   inner join descriptions on products.description = descriptions.id
   inner join info on products.info = info.id
   inner join similarItems on products.similarItems = similarItems.id
-  where products.id = '${productId}';
+    ${Array.isArray(productIds) ? `
+      where products.id in (${productIds.map(id => `'${id}'`).join(',')})
+    ` : `
+      where products.id = '${productIds}';
+    `}
 `;
 
 // get foreign keys from product table
@@ -38,7 +42,7 @@ const getProductKeys = (productId) => `
 
 // build out query templates for CUD
 // reusable update table template
-// arrays passed as values must be stringified, where is pair of prop='val'
+// values passed as arrays must be stringified, where is pair of prop='val'
 // columns and values must be in same order
 const updateQuery = ({table = '', columns = [], values = [], where = [['prop', 'val']]}) => `
   UPDATE ${table}
@@ -61,6 +65,7 @@ const insertQuery = ({table = '', columns = [], values = []}) => `
 const deleteQuery = ({table = '', where = [['prop', 'val']]}) => `
   DELETE FROM ${table}
   WHERE ${where.map(tup => `${tup[0]}='${tup[1]}'`).join(' AND ')};
+
 `;
 
 // store different templates to be indexed later
@@ -70,12 +75,24 @@ const queriesTypes = {
   delete: deleteQuery
 };
 
+// combine query template for each table so all can be changed as same time
 // process all queries through template designated by the arg type
 // use begin and commit to lump into single transaction to ensure integrity
 // works for update, delete, insert
+// updates sdc_data on insert and deletes to track record metadata
 const combineQueries = (type, ...queries) => `
   BEGIN;
     ${queries.map(query => queriesTypes[type](query)).join('\n')}
+
+    ${type === 'delete' ?  `UPDATE sdc_data
+    SET total_records = total_records - 1
+    WHERE id = 1;`: ''}
+
+    ${type === 'insert' ? `UPDATE sdc_data
+    SET latest_record = latest_record + 1,
+        total_records = total_records + 1
+    WHERE id = 1;` : ''}
+
   COMMIT;
 `;
 
@@ -84,31 +101,62 @@ exports.getKeys = async (productId) => {
   return client.query(getProductKeys(productId));
 }
 
-// get single product description by id
-exports.getProduct = async (productId) => {
-  const q = getProductQuery(productId);
-  const { rows } = await client.query(q);
-  return rows[0];
+// get products by id, can accept array of product ids or single product id
+exports.getProduct = async (productId) => {  
+  try {
+    const q = getProductQuery(productId);
+    const { rows } = await client.query(q);
+    // if batch return all rows
+    if(Array.isArray(productId)) return rows;
+    //if single return first result
+    else return rows[0];
+  } catch (error) {
+    throw error;
+  }
 };
 
 // for use in controller, take query objects, combine and resolve
 exports.updateProduct = async (...queries) => {
-  const q = combineQueries('update', ...queries);
-  return client.query(q);
+  try {
+    const q = combineQueries('update', ...queries);
+    return client.query(q);
+  } catch (error) {
+    await client.query('rollback;');
+    throw error;
+  }
 };
 
 // for use in controller
 exports.insertProduct = async(...queries) => {
-  const q = combineQueries('insert', ...queries);
-  return client.query(query);
+  try {
+    const q = combineQueries('insert', ...queries);
+    let res = await client.query(q);
+    return res;
+  } catch (error) {
+    await client.query('rollback;');
+    throw error;
+  }
+
 };
 
+// delete a product and all related entries
 exports.deleteProduct = async (...queries) => {
-  const q = combineQueries('delete', ...queries);
-  return client.query(q);
+  try {
+    const q = combineQueries('delete', ...queries);
+    console.log(q);
+    let res = client.query(q);
+    return res;
+  } catch (error) {
+    await client.query('rollback;');
+    throw error; 
+  }
+
 };
 
-
+// get last product index inorder to insert new record and use hash of index for id 
+exports.getLatest = async () => {
+  return (await client.query(`select latest_record from sdc_data where id=1;`)).rows[0].latest_record;
+};
 
 
 // ************************ example and testing below
