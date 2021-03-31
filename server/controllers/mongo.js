@@ -98,7 +98,7 @@ exports.genUpdate = async (req, res, next) => {
       let update = generateData(1,1)[0];
       delete update.productId;
       req.body = update;
-      req.body.itemColor = 'This was updated'
+      req.body.itemColor = 'This was updated';
       next();
     } catch (error) {
       res.status(error.status || 500).json(error);

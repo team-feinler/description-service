@@ -5,6 +5,12 @@ const DESCRIPTION = 'description';
 const INFO = 'info';
 const SIMILARITEMS = 'similarItems';
 const CONFIGURATION = 'configuration';
+//export for use in later inserts
+exports.DESCRIPTION = DESCRIPTION;
+exports.INFO = INFO;
+exports.SIMILARITEMS = SIMILARITEMS;
+exports.CONFIGURATION = CONFIGURATION;
+
 
 // configure objects for bulk insert
 /**
@@ -136,4 +142,60 @@ exports.similarItems = {
     ].join(',');
   }
 }
+// data generators that will be used in middleware for randomizing updates and inserts
+const genItems = (index, total = 10000000) => {
+  let limit = Math.floor(Math.random() * 5);
+  let items = [];
+  for (let i = 0; i < limit; i++) {
+    let item = Math.floor(Math.random() * (total - 1)) + 1;
+    items.push(md5(item));
+  }
+  return items;
+}
 
+const genConfig = index => {
+  const configuration = [];
+  const count = Math.floor(Math.random() * 5) + 1
+  for (let i = 0; i <= count; i++) {
+    configuration.push(faker.commerce.productAdjective());
+  }
+  return configuration;
+}
+
+const genDescription = index => {
+  const description = [];
+  const count = Math.floor(Math.random() * 5) + 1
+  for (let i = 0; i <= count; i++) {
+    description.push(faker.lorem.paragraph());
+  }
+  return description;
+};
+
+const genInfo = index => {
+  const configuration = [];
+  const count = Math.floor(Math.random() * 5) + 1
+  for (let i = 0; i <= count; i++) {
+    configuration.push(faker.commerce.productAdjective());
+  }
+  return {
+    itemName: faker.commerce.productName(),
+    itemColor: faker.commerce.color(),
+    brand: faker.commerce.productName(),
+    isPrimeFreeOneDay: faker.random.boolean(),
+    isFreeDelivery: faker.random.boolean()
+  }
+}
+
+exports.randomDoc = (index) => {
+  const similarItems = genItems(index);
+  const itemDescription = genDescription(index);
+  const configuration = genConfig(index);
+  const info = genInfo(index);
+  return {
+    id: md5(index),
+    itemDescription,
+    configuration,
+    similarItems,
+    ...info
+  }
+};
