@@ -5,18 +5,18 @@ const client = new Client();
 
 client.connect();
 
-// get single product
+// get single or batch of products (takes single id or array)
 const getProductQuery = (productIds) =>  `
   select 
-    products.id,
+    products.id as "productId",
     configurations.configuration,
-    descriptions.itemDescription,
-    info.itemName,
-    info.itemColor,
+    descriptions.itemDescription as "itemDescription",
+    info.itemName as "itemName",
+    info.itemColor as "itemColor",
     info.brand,
-    info.isPrimeFreeOneDay,
-    info.isFreeDelivery,
-    similarItems.similarItems
+    info.isPrimeFreeOneDay as "isPrimeFreeOneDay",
+    info.isFreeDelivery as "isFreeDelivery",
+    similarItems.similarItems as "similarItems"
   from products
   inner join configurations on products.configuration = configurations.id
   inner join descriptions on products.description = descriptions.id
@@ -107,9 +107,9 @@ exports.getProduct = async (productId) => {
     const q = getProductQuery(productId);
     const { rows } = await client.query(q);
     // if batch return all rows
-    if(Array.isArray(productId)) return rows;
+    // if(Array.isArray(productId)) return rows;
     //if single return first result
-    else return rows[0];
+    return rows;
   } catch (error) {
     throw error;
   }
