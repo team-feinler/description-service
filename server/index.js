@@ -24,7 +24,8 @@ app.get('*.js', function(req, res, next) {
   next();
 });
 app.use(express.static(__dirname + '/../public'));
-app.use('/:id', express.static(__dirname + '/../public'));
+app.use('/:id', express.static(__dirname + '../../public'));
+
 
 
 // hash param and add to req
