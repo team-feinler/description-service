@@ -34,6 +34,7 @@ __snapshots__
 *.pem
 .env
 
+newrelic_agent.log
 
 
 

@@ -30,16 +30,16 @@ class App extends React.Component {
       itemName: null,
       isPrimeFreeOneDay: null,
       isFreeDelivery: null,
-      rating: null,
-      price: null,
-      answeredQuestions: null,
-      productInventory: null,
-      starRating: null
+      rating: 1,
+      price: 1.00,
+      answeredQuestions: 5,
+      productInventory: 1,
+      starRating: 1
     };
-    this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
-    this.getPrice = this.getPrice.bind(this);
-    this.getAnsweredQuestions = this.getAnsweredQuestions.bind(this);
-    this.getRating = this.getRating.bind(this);
+    // this.handleColorBoxClick = this.handleColorBoxClick.bind(this);
+    // this.getPrice = this.getPrice.bind(this);
+    // this.getAnsweredQuestions = this.getAnsweredQuestions.bind(this);
+    // this.getRating = this.getRating.bind(this);
   }
 
   componentDidMount() {
@@ -48,9 +48,11 @@ class App extends React.Component {
     let productId = url.split('/')[3] || 1000;
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
+        console.log(response)
         let itemData = response.data[0];
         this.setState({
-          productId: itemData.productId,
+          ...this.state,
+          productId: productId,
           itemDescription: itemData.itemDescription,
           brand: itemData.brand,
           itemColor: itemData.itemColor,
@@ -72,56 +74,56 @@ class App extends React.Component {
     // this.getRating(productId);
   }
 
-  getPrice(id) {
-    let productId = id;
+  // getPrice(id) {
+  //   let productId = id;
 
-    axios.get(`http://ec2-3-141-67-137.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`)
+  //   axios.get(`http://ec2-3-141-67-137.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`)
 
-      .then((response) => {
-        let itemPrice = response.data[0].price;
-        let inventory = response.data[0].inventory;
-        this.setState({
-          price: itemPrice,
-          productInventory: inventory
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //     .then((response) => {
+  //       let itemPrice = response.data[0].price;
+  //       let inventory = response.data[0].inventory;
+  //       this.setState({
+  //         price: itemPrice,
+  //         productInventory: inventory
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  getAnsweredQuestions(id) {
-    let productId = id;
+  // getAnsweredQuestions(id) {
+  //   let productId = id;
 
-    axios.get(` http://ec2-3-22-93-125.us-east-2.compute.amazonaws.com:4001/customer-questions/${productId}`)
+  //   axios.get(` http://ec2-3-22-93-125.us-east-2.compute.amazonaws.com:4001/customer-questions/${productId}`)
 
-      .then(res => {
-        let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
-        this.setState({
-          answeredQuestions: numberOfAnsweredQuestions
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  //     .then(res => {
+  //       let numberOfAnsweredQuestions = res.data[0].questionAndAnswers.length;
+  //       this.setState({
+  //         answeredQuestions: numberOfAnsweredQuestions
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
-  getRating(id) {
-    let productId = id;
-    axios.get(`http://ec2-174-129-73-213.compute-1.amazonaws.com:4006/Reviews/getReviewSummary/${productId}`)
+  // getRating(id) {
+  //   let productId = id;
+  //   axios.get(`http://ec2-174-129-73-213.compute-1.amazonaws.com:4006/Reviews/getReviewSummary/${productId}`)
 
-      .then(response => {
-        let numOfRatings = response.data.totalRatings;
-        let averageRating = response.data.averageRating;
-        this.setState({
-          rating: numOfRatings,
-          starRating: averageRating
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  //     .then(response => {
+  //       let numOfRatings = response.data.totalRatings;
+  //       let averageRating = response.data.averageRating;
+  //       this.setState({
+  //         rating: numOfRatings,
+  //         starRating: averageRating
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
   //handle color box click
   handleColorBoxClick (id) {
@@ -129,10 +131,10 @@ class App extends React.Component {
     let productId = id;
     axios.get(`http://localhost:4004/description/${productId}`)
       .then((response) => {
-        console.log(response)
         let itemData = response.data[0];
         window.location = `/${itemData.productId}`;
         this.setState({
+          ...this.state,
           productId: itemData.productId,
           itemDescription: itemData.itemDescription,
           brand: itemData.brand,
@@ -144,12 +146,13 @@ class App extends React.Component {
           isFreeDelivery: itemData.isFreeDelivery
         })
           .catch((error) => {
+            console.log('error from products')
             console.log(error);
           });
       });
-    this.getPrice(productId);
-    this.getAnsweredQuestions(productId);
-    this.getRating(productId);
+    // this.getPrice(productId);
+    // this.getAnsweredQuestions(productId);
+    // this.getRating(productId);
   }
 
   render () {
@@ -162,7 +165,7 @@ class App extends React.Component {
         </div>
       );
     }
-
+    console.log(this.state)
     return (
       <DescriptionContainer>
         <div>
