@@ -1,0 +1,59 @@
+config:
+  environments: 
+    test: 
+      target: "http://localhost:4004"
+      phases: 
+        - duration: 5
+          arrivalRate: 1   
+      processor: "functions.js"
+    low: 
+      target: "http://localhost:4004"
+      processor: "functions.js"
+      phases: 
+        - duration: 60
+          arrivalRate: 10
+
+    medium:
+      target: "http://localhost:4004"
+      processor: "functions.js"
+      phases:
+        - duration: 60
+          arrivalRate: 50
+
+    high:
+      target: "http://localhost:4004"
+      processor: "functions.js"
+      phases:
+        - duration: 60
+          arrivalRate: 250
+
+    reallyHigh:
+      target: "http://localhost:4004"
+      processor: "functions.js"
+      phases:
+        - duration: 60
+          arrivalRate: 1000 
+          
+    lowToReallyHigh:
+      target: "http://localhost:4004"
+      processor: "functions.js"
+      phases: 
+        - duration: 60
+          arrivalRate: 1
+          rampTo: 1000
+        - duration: 20
+          arrivalRate: 1000
+         
+scenarios:
+  - flow:
+
+    - get: 
+        url: "/description/3"
+        beforeRequest: "setProductId"
+        # afterResponse: "printResponse"
+
+    - post:
+        url: "/descriptions/new"
+        beforeRequest: "createBody"
+        # afterResponse: "printResponse"
+      

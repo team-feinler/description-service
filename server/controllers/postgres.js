@@ -110,7 +110,7 @@ exports.insertProduct = asyncHandler( async(req, res, next) => {
 
   // resolve all queries at once
   const insert = await insertProduct(...queries);
-  res.json(insert);
+  res.status(200).json(insert);
 })
 
 // create random data for update if req.body is empty(for testing)
