@@ -37,6 +37,7 @@
     "react-star-rating-component": "^1.4.1",
     "react-test-renderer": "^17.0.1",
     "react-tooltip": "^4.2.13",
+    "redis": "^3.1.0",
     "regenerator-runtime": "^0.13.7",
     "request": "^2.88.2",
     "styled-components": "^5.2.1"
