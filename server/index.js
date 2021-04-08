@@ -4,6 +4,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const { getProduct, updateProduct, genUpdate, insertProduct, genInsert, deleteProduct, getProductBatch, genBatch, hashProductIds } = require('./controllers/postgres.js');
+
+const { getCached } = require('./controllers/redis.js');
+
 const { errorHandler, hashParam } = require('./controllers/utils.js');
 
 const app = express();
@@ -32,7 +35,7 @@ app.use('/:id', express.static(__dirname + '../../public'));
 // RUD controllers
 app.use('/description/:productId', hashParam);
 app.route('/description/:productId')
-  .get(getProduct)
+  .get(getCached, getProduct)
   .put(genUpdate, updateProduct)
   .delete(deleteProduct);
 
