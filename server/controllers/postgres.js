@@ -1,18 +1,19 @@
-// TODO add table to track latest id to automate inserting consistently retrievable ids
-// TODO add table to track total count of all records
 // TODO validate and sanitize data
 
 const { getProduct, updateProduct, getKeys, deleteProduct, insertProduct, getLatest } = require('../../database/postgres/database.js');
 const { asyncHandler, ErrAPI, generateIds } = require('./utils.js');
 const { randomDoc } = require('../../database/postgres/data.js');
 const md5 = require('md5');
+const { setCache, invalidateKey } = require("./redis.js");
 
 // keys for info values to control entries
 const infoKeys = ['brand', 'itemColor', 'itemName', 'isPrimeFreeOneDay', 'isFreeDelivery'];
 
 // get a single or batch of product descriptions
 exports.getProduct = asyncHandler( async(req, res, next) => {
+  const { productId } = req.params;
   const product = await getProduct(req.hash);
+  await setCache(productId, JSON.stringify(product));
   res.status(200).json(product);
 });
 
@@ -24,6 +25,7 @@ exports.getProductBatch = asyncHandler( async (req, res, next) => {
 
 // takes product.id and updates the corresponding tables
 exports.updateProduct = asyncHandler( async(req, res, next) => {
+  const { productId } = req.params;
   // get values from req body
   const {itemDescription, similarItems, configuration, ...info} = req.body;
   // get foreign keys for given product id
@@ -55,11 +57,13 @@ exports.updateProduct = asyncHandler( async(req, res, next) => {
   // update and return res
   await updateProduct(...queries);
   const product = await getProduct(req.hash);
+  await invalidateKey(productId);
   res.json(product);
 });
 
 // delete a product by id
 exports.deleteProduct = asyncHandler( async(req, res, next) => {
+  const { productId } = req.params;
   const keys = await getKeys(req.hash);
   if(!keys.rows[0]) throw new ErrAPI('Product does not exist', 404, 'deleteProduct');
   const { configuration, description, info, similaritems } = keys.rows[0]
@@ -71,6 +75,7 @@ exports.deleteProduct = asyncHandler( async(req, res, next) => {
   queries.push({table: 'similarItems', where: [['similarItems.id', similaritems]]});
  
   const deleted = await deleteProduct(...queries);
+  await invalidateKey(productId);
   res.json(deleted);
 });
 
