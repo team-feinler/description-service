@@ -22,13 +22,9 @@ const deleter = promisify(client.del.bind(client));
 
 // check cache for a request
 exports.getCached = asyncHandler( async (req, res, next) => {
-  if(CACHE_UP = false) {
-    next();
-  }
   const { productId } = req.params;
   // check if  value exists in cache and send if it does
   let cachedResult = JSON.parse(await getter(productId));
-  console.log('result', cachedResult)
   // if exists in cache re turn 
   if(cachedResult !== null) {
     res.json(cachedResult);
@@ -40,9 +36,17 @@ exports.getCached = asyncHandler( async (req, res, next) => {
 
 // function used in endpoints to set results to cache
 exports.setCache = async (key, value) => {
-  await setter(key, value).catch(err => { throw err });
+  const keyValue = parseInt(key);
+  // naive implementation of key control
+  if(9000000 <= keyValue && keyValue <= 9350000) {
+    await setter(key, value).catch(err => { throw err });
+  }
 };
 
 exports.invalidateKey = async (key) => {
-  await deleter(key).catch(err => { throw err });
+  const keyValue = parseInt(key);
+  // naive implementation of key control
+  if(9000000 <= keyValue && keyValue <= 9350000) {
+    await deleter(key).catch(err => { throw err });
+  }
 };
