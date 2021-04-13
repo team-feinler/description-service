@@ -36,16 +36,16 @@ app.use('/:id', express.static(__dirname + '../../public'));
 app.use('/description/:productId', hashParam);
 app.route('/description/:productId')
   .get(getCached, getProduct)
-  .put(genUpdate, updateProduct)
+  .put(updateProduct)
   .delete(deleteProduct);
 
 // C controller
 app.route('/descriptions/new')
-  .post(genInsert, insertProduct);
+  .post(insertProduct);
 
 //get multiple item descriptions
 app.use(hashProductIds);
-app.get('/descriptions/multiple', genBatch, getProductBatch);
+app.get('/descriptions/multiple', getProductBatch);
 app.use(errorHandler);
 
 module.exports = app;
