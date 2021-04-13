@@ -1,14 +1,13 @@
 import 'regenerator-runtime/runtime'
-const mongoose = require('mongoose');
-const db = mongoose.connection;
-const assert = require('assert');
-const generateData = require('../database/data.js');
-const Description = require('../database/database.js');
-const expect = require('expect.js');
-const app = require('../server/index.js');
-const supertest = require('supertest');
-const request = supertest(app);
-const query = require('../database/query.js');
+// const assert = require('assert');
+// const generateData = require('../database/data.js');
+// const Description = require('../database/database.js');
+// const expect = require('expect.js');
+// const app = require('../server/index.js');
+// const supertest = require('supertest');
+// const request = supertest(app);
+// const query = require('../database/query.js');
+// const { close } = require('../server/controllers/redis');
 
 xdescribe('GENERATE DATA', () => {
 
@@ -28,7 +27,7 @@ xdescribe('GENERATE DATA', () => {
   });
 });
 
-describe('DATABASE', () => {
+xdescribe('DATABASE', () => {
   mongoose.connect('mongodb://localhost/ItemDescription')
   .catch((err) => {
     console.log(err);
@@ -52,7 +51,11 @@ describe('DATABASE', () => {
     done();
   });
 
-
-
-
 });
+
+describe('closes connection', () => {
+  afterAll(async () => {
+    await close();
+    done();
+  });
+})
