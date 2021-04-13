@@ -20,6 +20,7 @@ const promisify = fn => (...args) => new Promise((resolve, reject) => {
 const getter = promisify(client.get.bind(client));
 const setter = promisify(client.set.bind(client));
 const deleter = promisify(client.del.bind(client));
+const close = promisify(client.quit.bind(client));
 
 const inRange = (productId) => {
   const value = parseInt(productId)
@@ -64,3 +65,5 @@ exports.invalidateKey = async (productId) => {
     await deleter(productId).catch(err => { throw err });
   }
 };
+
+exports.close = close;
