@@ -1,10 +1,9 @@
-const app = require('../server/index.js');
-const supertest = require('supertest');
-const request = supertest(app);
-const Description = require('../database/database.js');
-import 'regenerator-runtime/runtime';
+// const supertest = require('supertest');
+// // const request = supertest(app);
+// const Description = require('../database/database.js');
+// import 'regenerator-runtime/runtime';
 
-describe('API Endpoints', () => {
+xdescribe('API Endpoints', () => {
 
   let productId;
 
@@ -32,7 +31,7 @@ describe('API Endpoints', () => {
     })
   })
 
-  describe('/descriptions/multiple Endpoint', () => {
+  xdescribe('/descriptions/multiple Endpoint', () => {
     test('/descriptions/multiple endpoint will respond with 200 if array of productIds between 1000-1090 are sent', async (done) => {
       const res = await request.get('/descriptions/multiple/?1=1&2=2&3=3');
       expect(res.status).toBe(200);

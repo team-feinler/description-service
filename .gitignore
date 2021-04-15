@@ -35,6 +35,7 @@ __snapshots__
 .env
 
 newrelic_agent.log
+dump.rdb
 
 
 

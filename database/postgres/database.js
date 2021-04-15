@@ -143,7 +143,6 @@ exports.insertProduct = async(...queries) => {
 exports.deleteProduct = async (...queries) => {
   try {
     const q = combineQueries('delete', ...queries);
-    console.log(q);
     let res = client.query(q);
     return res;
   } catch (error) {
